@@ -3,18 +3,18 @@ project:
   output-dir: docs
 
 website:
-  title: "Website"
+  title: "Tejas Savalia"
   navbar:
     left:
-      - href: index.qmd
+      - href: mds/index.qmd
         text: Home
-      - about.qmd
-      - cv.qmd
+      - mds/about.qmd
+      - mds/cv.qmd
     background: primary
 
 format:
   html:
-    theme: cosmo
+    theme: morph
     css: styles.css
     toc: true
 

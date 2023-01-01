@@ -1,8 +1,8 @@
 ---
-title: "Tejas Savalia"
+title: "Me"
 ---
 
-![](display_pic.jpg){width=100 fig-align="center"}
+![](../images/display_pic.jpg){width=300 fig-align="center"}
 
 
 Hello!
