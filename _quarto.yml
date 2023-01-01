@@ -6,7 +6,7 @@ website:
   title: "Tejas Savalia"
   navbar:
     left:
-      - href: index.qmd
+      - href: mds/index.qmd
         text: Home
       - mds/about.qmd
       - mds/cv.qmd
