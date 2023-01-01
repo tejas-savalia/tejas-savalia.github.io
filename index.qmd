@@ -2,7 +2,8 @@
 title: "Tejas Savalia"
 ---
 
-![It me](display_pic.jpg)
+![](display_pic.jpg){width=100 fig-align="center"}
 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Hello!
+I am Tejas. I'm a PhD Candidate in Psychology at University of Massachusetts, Amherst. I work on motor learning and memory. I also read and play boardgames. 
