@@ -1,9 +1,0 @@
----
-title: "Me"
----
-
-![](../images/display_pic.jpg){width=300 fig-align="center"}
-
-
-Hello!
-I am Tejas. I'm a PhD Candidate in Psychology at University of Massachusetts, Amherst. I work on motor learning and memory. I also read and play boardgames. 
