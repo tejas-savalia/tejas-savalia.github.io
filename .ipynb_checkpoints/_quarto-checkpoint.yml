@@ -8,8 +8,8 @@ website:
     left:
       - href: mds/index.qmd
         text: Home
-      # - href: mds/about.qmd
-      #   text: About
+      - href: mds/about.qmd
+        text: About
       - href: mds/cv.qmd
         text: CV
     background: primary

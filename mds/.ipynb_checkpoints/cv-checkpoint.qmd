@@ -25,20 +25,18 @@ upon statistical regularities in their environments.
     - Developed a perceptual experimental framework to measure coherence of search page UI formats. 
     - Validated the developed metric using 42 MTurk studies with >20000 participants.
 
-- Research Intern, *Tata Innovation Labs, Hyderabad (Spring 2018)*
-
 ### Teaching Experience 
 
-- Decision Making Seminar Instructor, *UMass Amherst (Fall 2023)*
+- Decision Making Seminar Instructor, *UMass Amherst* (Fall 2023)
     - Designed and taught weekly seminar on decision-making in Psychology. 
 
-- Research Methods Teaching Assistant, *UMass Amherst (Fall 2022, Spring 2023, Spring 2024)*
+- Research Methods Teaching Assistant, *UMass Amherst* (Fall 2022, Spring 2023, Spring 2024)
     - Led weekly tutorials and hands-on laboratory sessions teaching students how to conduct end-to-end psychology research projects using survey designs, psychometric experiments, and R scripting
 
-- Project Teaching Assitant *Neuromatch Academy (Summer 2021)*
+- Project Teaching Assitant *Neuromatch Academy* (Summer 2021)
     - Mentored teams of graduate and undergraduate students in the global summer school program through their projects on functional Magentic Resonance Imaging.
 
-- Statistics Teaching Assistant, *UMass Amherst (Spring 2020, Fall 2020)*
+- Statistics Teaching Assistant, *UMass Amherst* (Spring 2020, Fall 2020)
     - Led labs and taught students how to use R to conduct data analyses.
 
 
