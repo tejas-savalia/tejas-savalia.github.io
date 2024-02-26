@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "mds/index.html",
-    "href": "mds/index.html",
-    "title": "Me",
-    "section": "",
-    "text": "Hello! I am Tejas. I’m a PhD Candidate in Psychology at the University of Massachusetts, Amherst. I work on statistical learning and memory. I use computational models and behavioral experiments to understand how we extract and store patterns around us. I get excited by inferential statistics and simulations. In my free time, I like to read and play boardgames."
-  },
-  {
-    "objectID": "mds/about.html",
-    "href": "mds/about.html",
-    "title": "About",
-    "section": "",
-    "text": "Don’t know what to put here yet. Might remove"
-  },
-  {
     "objectID": "mds/cv.html",
     "href": "mds/cv.html",
     "title": "CV",
@@ -40,5 +26,12 @@
     "title": "CV",
     "section": "",
     "text": "Tejas Savalia, Rosemary Cowell, and David Huber (2022). “Leap before you look”: Conditions that promote implicit visuomotor adaptation without explicit learning. bioRxiv 2022-07, *Under Review at Journal of Experimental Psychology, Human Perception and Performance8.\nElinor Waite, Tejas Savalia, Andrew Cohen, Lauren Haliczer, Sarah Huffman, and Katherine Dixon-Gordon. Borderline personality disorder and learning: The influences of emotional state and social versus nonsocial feedback, PsyArxiv, 2024.Under Review at Journal of Affective Disorders.\nTejas Savalia, Andrew Lovett, Cristina Ceja, Rosemary Cowell, Cindy Xiong Bearfield, Local and Global Extrema and Recall Response Modalities Bias Position Recall in Line Charts. Under Review at Transactions in Visualizations and Computer Graphics.\nTejas Savalia, Cindy Xiong Bearfield. A case for using Psychological Process Models to measure Perceptual Biases in Data Visualizations Under Review at ACM SIGCHI Late Breaking Work.\nTejas Savalia, Anuj Shukla, and Raju S Bapi, A Unified Framework for Cognitive Sequencing. Frontiers in Psychology, vol 7, (2016).\n\n\n\n\n\nTejas Savalia, Jeffrey Starns, and Andrew Cohen, “Random walk length modulates structure acquisition in modular graphs,” COSYNE, 2024\nTejas Savalia, Andrew Cohen, Rosemary Cowell, and David Huber. Reward changes are more disruptive than stimulus changes to implicit sequence learning of a community structure, CEMS, 2023.\nTejas Savalia, Rosemary Cowell and David Huber, “Leap before you look”: Conditions that promote implicit visuomotor adaptation without explicit learning. Talk at Psychonomics, 2022.\nTejas Savalia, Cristina Ceja, Rosemary Cowell, Cindy Xiong. “Estimating Biases in Line Charts: Effects of Shape and Response Modality”. OPAM, 2022.\nTejas Savalia, Cristina Ceja, Rosemary Cowell, Cindy Xiong. “Visual and Verbal Data Estimation Errors are Modulated by Chart Type”. Visual Science Society, 2022.\nTejas Savalia, Rosemary Cowell, David Huber, “Implicit Learning in Absence of Explicit Learning in a Visuomotor Adaptation Task.” Poster Presentation in Psychonomics, 2021.\nTejas Savalia, Rosemary Cowell, David Huber, ``Learning to Learn: Modeling Time Course of Visuomotor Adaptation.’’ Virtual poster presentation in Annual meeting for the Society for Mathematical Psychology, 2020. Youtube Link\nTejas Savalia, Rosemary Cowell and David Huber, “Learning a novel perception-action mapping: Error magnitude, speed/accuracy emphasis, and reinforcement learning.” Poster Presentation in Psychonomics, 2019."
+  },
+  {
+    "objectID": "mds/index.html",
+    "href": "mds/index.html",
+    "title": "Me",
+    "section": "",
+    "text": "Hello! I am Tejas. I’m a PhD Candidate in Psychology at the University of Massachusetts, Amherst. I work on statistical learning and memory. I use computational models and behavioral experiments to understand how we extract and store patterns around us. I get excited by inferential statistics and simulations. In my free time, I like to read and play boardgames."
   }
 ]

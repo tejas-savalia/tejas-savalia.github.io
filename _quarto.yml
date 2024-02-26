@@ -1,24 +1,25 @@
 project:
-  type: website
-  output-dir: docs
+    type: website
+    output-dir: docs
+    render:
+        - mds/index.qmd
+        - mds/cv.qmd
 
 website:
-  title: "Tejas Savalia"
-  navbar:
-    left:
-      - href: mds/index.qmd
-        text: Home
-      # - href: mds/about.qmd
-      #   text: About
-      - href: mds/cv.qmd
-        text: CV
-    background: primary
+    title: "Tejas Savalia"
+    navbar:
+        background: primary
+    
+        left:
+            - text: "Home"
+              file: mds/index.qmd
+            - mds/cv.qmd
 
 format:
-  html:
-    theme: morph
-    css: styles.css
-    toc: true
+    html:
+        theme: morph
+        css: styles.css
+        toc: true
 
 
 
