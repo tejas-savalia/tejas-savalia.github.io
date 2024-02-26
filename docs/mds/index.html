@@ -138,6 +138,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>Hello! I am Tejas. I’m a PhD Candidate in Psychology at the University of Massachusetts, Amherst. I work on statistical learning and memory. I use computational models and behavioral experiments to understand how we extract and store patterns around us. I get excited by inferential statistics and simulations. In my free time, I like to read and play boardgames.</p>
+<p>Socials: <a href="https://www.linkedin.com/in/tejas-savalia-8201888a/">Linkedin</a>, <a href="https://bsky.app/profile/tejassavalia.bsky.social">Bluesky</a>, or <a href="https://twitter.com/SavaliaTejas">Twitter</a></p>
+<p>Professional: <a href="https://github.com/tejas-savalia">Github</a>, <a href="https://scholar.google.com/citations?user=25KCLG8AAAAJ&amp;hl=en&amp;oi=ao">Scholar</a></p>
 
 
 
@@ -221,6 +223,26 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,

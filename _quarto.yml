@@ -17,6 +17,8 @@ website:
 
 format:
     html:
+        link-external-icon: true
+        link-external-newwindow: true
         theme: morph
         css: styles.css
         toc: true
