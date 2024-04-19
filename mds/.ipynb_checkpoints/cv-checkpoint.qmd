@@ -25,18 +25,20 @@ upon statistical regularities in their environments.
     - Developed a perceptual experimental framework to measure coherence of search page UI formats. 
     - Validated the developed metric using 42 MTurk studies with >20000 participants.
 
+- Research Intern, *Tata Innovation Labs, Hyderabad (Spring 2018)*
+
 ### Teaching Experience 
 
-- Decision Making Seminar Instructor, *UMass Amherst* (Fall 2023)
+- Decision Making Seminar Instructor, *UMass Amherst (Fall 2023)*
     - Designed and taught weekly seminar on decision-making in Psychology. 
 
-- Research Methods Teaching Assistant, *UMass Amherst* (Fall 2022, Spring 2023, Spring 2024)
+- Research Methods Teaching Assistant, *UMass Amherst (Fall 2022, Spring 2023, Spring 2024)*
     - Led weekly tutorials and hands-on laboratory sessions teaching students how to conduct end-to-end psychology research projects using survey designs, psychometric experiments, and R scripting
 
-- Project Teaching Assitant *Neuromatch Academy* (Summer 2021)
+- Project Teaching Assitant *Neuromatch Academy (Summer 2021)*
     - Mentored teams of graduate and undergraduate students in the global summer school program through their projects on functional Magentic Resonance Imaging.
 
-- Statistics Teaching Assistant, *UMass Amherst* (Spring 2020, Fall 2020)
+- Statistics Teaching Assistant, *UMass Amherst (Spring 2020, Fall 2020)*
     - Led labs and taught students how to use R to conduct data analyses.
 
 
@@ -68,7 +70,7 @@ upon statistical regularities in their environments.
 
 ## Publications
 ### Peer-reviewed Journal Articles
-1. **Tejas Savalia**, Rosemary Cowell, and David Huber (2022). “Leap before you look”: Conditions that promote implicit visuomotor adaptation without explicit learning. [bioRxiv 2022-07](https://www.biorxiv.org/content/biorxiv/early/2022/07/13/2022.07.12.499675.full.pdf), *Under Review at Journal of Experimental Psychology, Human Perception and Performance8.
+1. **Tejas Savalia**, Rosemary Cowell, and David Huber (2024). “Leap before you look”: Conditions that promote implicit visuomotor adaptation without explicit learning. *In Press* [Journal of Experimental Psychology: Human Perception and Performance ](10.1037/xhp0001210),
 
 2. Elinor Waite, **Tejas Savalia**, Andrew Cohen,  Lauren Haliczer, Sarah Huffman, and Katherine Dixon-Gordon. Borderline personality disorder and learning: The influences of emotional state and social versus nonsocial feedback, [PsyArxiv, 2024](https://osf.io/preprints/psyarxiv/bkyse).*Under Review at Journal of Affective Disorders*.
 
