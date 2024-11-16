@@ -11,8 +11,6 @@ website:
     navbar:
         background: primary
         left:
-            - text: "Home"
-              href: mds/index.qmd
             - mds/cv.qmd
         tools:
             - icon: twitter
