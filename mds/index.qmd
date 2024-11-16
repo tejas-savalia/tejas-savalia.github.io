@@ -1,15 +1,21 @@
 ---
-title: "Me"
+title: "Tejas Savalia"
 ---
 
 ![](../images/display_pic.jpg){width=300 fig-align="center"}
 
 
 Hello!
-I am Tejas. I'm a PhD Candidate in Psychology at the University of Massachusetts, Amherst. I work on statistical learning and memory. I use computational models and behavioral experiments to understand how we extract and store patterns around us. I get excited by inferential statistics and simulations. In my free time, I like to read and play boardgames. 
+I'm a Postdoc at Emory University. I work in the [LumenLab](https://scholarblogs.emory.edu/lumenlab/) on the neural and computational mechanisms underling emotion and motivation and their effect on statistical learning and memory. I use neuroimaging and behavioral experiments with computational modeling to understand how we extract and store patterns around us. I get excited by inferential statistics and simulations. In my free time, I like to read and play boardgames. 
 
-Socials: [Linkedin](https://www.linkedin.com/in/tejas-savalia-8201888a/), [Bluesky](https://bsky.app/profile/tejassavalia.bsky.social), or [Twitter](https://twitter.com/SavaliaTejas) 
+See my [scholar profile](https://scholar.google.com/citations?user=25KCLG8AAAAJ&hl=en&oi=ao) for a complete list of publications.
 
-Professional: [Github](https://github.com/tejas-savalia), [Scholar](https://scholar.google.com/citations?user=25KCLG8AAAAJ&hl=en&oi=ao)
+News: 
 
-News: [Paper accepted at JEP:HPP](https://drive.google.com/file/d/1k0dOQ94EU0iz1luldkvcKehhTvaVaqsm/view?usp=sharing) 
+- Sep 2023: Started working as a postdoc at the LumenLab.
+
+- Aug 2023: Completed my dissertation at UMass. 
+
+- [Paper accepted at Journal of Affective Disorders](https://doi.org/10.1016/j.jad.2024.07.072) 
+
+- [Paper accepted at JEP:HPP](https://drive.google.com/file/d/1k0dOQ94EU0iz1luldkvcKehhTvaVaqsm/view?usp=sharing) 

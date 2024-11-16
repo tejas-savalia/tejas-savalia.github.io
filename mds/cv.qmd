@@ -1,8 +1,8 @@
 ---
 title: 'CV'
 ---
-# Tejas Savalia
-### PhD Candidate in Psychology, UMass Amherst
+# Tejas Savalia, PhD
+### Postdoc at Emory University
 
 My research draws upon cognitive computational modeling to enable
 investigations into cognitive aspects of implicit and explicit
@@ -47,6 +47,9 @@ upon statistical regularities in their environments.
 
 
 ## Current Projects
+-   **Disassociating neural mechanisms of affective stimuli**.
+    Analysis of neuroimaging data to assess common and distinctive neural representations of positive affective experiences in adults and adolescents. 
+
 -   **Modeling statistical learning using Successor Representation**.
     Behavioral experiments and computational modeling to understand
     implicit learning of environment statistics and categorization.
@@ -70,13 +73,13 @@ upon statistical regularities in their environments.
 
 ## Publications
 ### Peer-reviewed Journal Articles
-1. **Tejas Savalia**, Rosemary Cowell, and David Huber (2024). “Leap before you look”: Conditions that promote implicit visuomotor adaptation without explicit learning. *In Press* [Journal of Experimental Psychology: Human Perception and Performance ](10.1037/xhp0001210),
+1. **Tejas Savalia**, Rosemary Cowell, and David Huber (2024). “Leap before you look”: Conditions that promote implicit visuomotor adaptation without explicit learning. [Journal of Experimental Psychology: Human Perception and Performance ](10.1037/xhp0001210),
 
-2. Elinor Waite, **Tejas Savalia**, Andrew Cohen,  Lauren Haliczer, Sarah Huffman, and Katherine Dixon-Gordon. Borderline personality disorder and learning: The influences of emotional state and social versus nonsocial feedback, [PsyArxiv, 2024](https://osf.io/preprints/psyarxiv/bkyse).*Under Review at Journal of Affective Disorders*.
+2. Waite, Elinor E., **Tejas Savalia**, Andrew L. Cohen, Lauren A. Haliczer, Sarah Huffman, and Katherine L. Dixon-Gordon. "Borderline personality disorder and learning: The influences of emotional state and social versus nonsocial feedback." [Journal of Affective Disorders 363 (2024): 474-482](https://doi.org/10.1016/j.jad.2024.07.072).
 
-3. **Tejas Savalia**, Andrew Lovett, Cristina Ceja, Rosemary Cowell, Cindy Xiong Bearfield, Local and Global Extrema and Recall Response Modalities Bias Position Recall in Line Charts. *Under Review at Transactions in Visualizations and Computer Graphics*.
+3. **Tejas Savalia**, Andrew Lovett, Cristina Ceja, Rosemary Cowell, Cindy Xiong Bearfield, Local and Global Extrema and Recall Response Modalities Bias Position Recall in Line Charts. *In Prep*.
 
-4. **Tejas Savalia**, Cindy Xiong Bearfield. A case for using Psychological Process Models to measure Perceptual Biases in Data Visualizations *Under Review at ACM SIGCHI Late Breaking Work.*
+4. **Tejas Savalia**, Cindy Xiong Bearfield. A case for using Psychological Process Models to measure Perceptual Biases in Data Visualizations *In Prep*
     
 5. **Tejas Savalia**, Anuj Shukla, and Raju S Bapi, A Unified Framework for Cognitive Sequencing. [*Frontiers in Psychology,  vol 7, (2016)*](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.01821/full). 
 
