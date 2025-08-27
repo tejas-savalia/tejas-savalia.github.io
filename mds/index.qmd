@@ -8,7 +8,7 @@ title: "Tejas Savalia"
 Hello!
 I'm a Postdoc at Emory University. I work in the [LumenLab](https://scholarblogs.emory.edu/lumenlab/) on the neural and computational mechanisms underling emotion and motivation and their effect on statistical learning and memory. I use neuroimaging and behavioral experiments with computational modeling to understand how we extract and store patterns around us. I get excited by inferential statistics and simulations. In my free time, I like to read and play boardgames. 
 
-See my [scholar profile](https://scholar.google.com/citations?user=25KCLG8AAAAJ&hl=en&oi=ao) for a complete list of publications.
+See my [scholar profile](https://scholar.google.com/citations?user=WRdEP-cAAAAJ&hl=en&oi=ao) for a complete list of publications.
 
 ## News: 
 

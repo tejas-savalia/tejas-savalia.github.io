@@ -22,7 +22,7 @@ website:
             - text: "{{< iconify fa6-brands google-scholar >}}"
               href: https://scholar.google.com/citations?user=25KCLG8AAAAJ&hl=en
 
-    google-analytics: "G-4C3HTNZFPQ"
+    google-analytics: " G-4C3HTNZFPQ"
     open-graph: true
 
 
