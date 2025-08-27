@@ -2,7 +2,7 @@
 title: "Tejas Savalia"
 ---
 
-![](../images/display_pic.jpg){width=300 fig-align="center"}
+![](../images/display_pic.png){width=300 fig-align="center"}
 
 
 Hello!
