@@ -43,62 +43,72 @@ upon statistical regularities in their environments.
 
 
 
-
-
-
 ## Current Projects
 -   **Disassociating neural mechanisms of affective stimuli**.
     Analysis of neuroimaging data to assess common and distinctive neural representations of positive affective experiences in adults and adolescents. 
 
--   **Modeling statistical learning using Successor Representation**.
-    Behavioral experiments and computational modeling to understand
-    implicit learning of environment statistics and categorization.
-
--   **Bayesian modeling of instrumental learning in BPD patients**
-    Bayesian computational modeling and analyses of data collected by
-    clinical psychology collaborators to understand differences in
-    decision-making behavior in borderline personality disorder
-    patients.
+-   **Discerning the role of emotional states in statistical learning across development**.
+    Behavioral and Functional Neuroimaging experiments and computational modeling to investigate how internal affective states help or hurt implicit statistical learning in adults and adolescents. 
 
 -   **Understanding neural motor directional tuning using fMRI**
     Functional Neuroimaging experiments and computational modeling with
     multivariate analyses of neural tuning functions to investigate the
     neural correlates of motor directional planning.
 
--   **Understanding how the shape of data affects its perception**
-    Applied research in collaboration with researchers in computer
-    science using behavioral experiments and Bayesian drift-diffusion
-    modeling to understand how data visualizations may bias perception
-    in psychologically interpretable parameters.
-
 ## Publications
-### Peer-reviewed Journal Articles
+### Accepted and Published Articles
 1. **Tejas Savalia**, Rosemary Cowell, and David Huber (2024). “Leap before you look”: Conditions that promote implicit visuomotor adaptation without explicit learning. [Journal of Experimental Psychology: Human Perception and Performance ](10.1037/xhp0001210),
 
 2. Waite, Elinor E., **Tejas Savalia**, Andrew L. Cohen, Lauren A. Haliczer, Sarah Huffman, and Katherine L. Dixon-Gordon. "Borderline personality disorder and learning: The influences of emotional state and social versus nonsocial feedback." [Journal of Affective Disorders 363 (2024): 474-482](https://doi.org/10.1016/j.jad.2024.07.072).
 
-3. **Tejas Savalia**, Andrew Lovett, Cristina Ceja, Rosemary Cowell, Cindy Xiong Bearfield, Local and Global Extrema and Recall Response Modalities Bias Position Recall in Line Charts. *In Prep*.
+3. **Tejas Savalia**, Anuj Shukla, and Raju S Bapi, A Unified Framework for Cognitive Sequencing. [*Frontiers in Psychology,  vol 7, (2016)*](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.01821/full). 
 
-4. **Tejas Savalia**, Cindy Xiong Bearfield. A case for using Psychological Process Models to measure Perceptual Biases in Data Visualizations *In Prep*
-    
-5. **Tejas Savalia**, Anuj Shukla, and Raju S Bapi, A Unified Framework for Cognitive Sequencing. [*Frontiers in Psychology,  vol 7, (2016)*](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.01821/full). 
+4. **Tejas Savalia**, Andrew Lovett, Cristina Ceja, Rosemary Cowell, Cindy Xiong Bearfield, Local and Global Extrema and Recall Response Modalities Bias Position Recall in Line Charts. *In Press*.    
+
+
+### In Review Articles
+5. **Tejas Savalia**, Xiaoya Anny Huang, Sophia Martin, Sagarika Devarayapuram Ramakrishnan, and Alexandra O. Cohen. Neural representations and functional connections underlie distinct and shared positive affect. [*PsyArxiv Preprint*](https://osf.io/preprints/psyarxiv/4kycg_v1)
+
+6. **Tejas Savalia**, Jeffrey Starns, and Andrew Cohen. Implicit boundaries are remembered better than non-boundaries in statistical learning (2025, In review). [*PsyArxiv Preprint*](https://osf.io/preprints/psyarxiv/juqts_v1)
+
+7. Rohini Kumar, **Tejas Savalia**, David Clewett, and Alexandra O. Cohen. A dynamic affective surprise signal influences episodic memory (2025, In review). [*PsyArxiv Preprint*](https://osf.io/preprints/psyarxiv/x79ah_v1).
+
+### In Prep Articles
+
+8. **Tejas Savalia**, Jeffrey Starns, Andrew Cohen. Evidence for predictive representations over associative representations in statistical learning.\ \textit{In Prep}.
+
+9. **Tejas Savalia**, Aisling Finnegan, Jeffrey Starns, Andrew Cohen. Enhanced statistical learning via structured musical categories in serial reaction time task.\ \textit{In Prep}.    
+
+10. **Tejas Savalia**, David Hubber, Rosemary Cowell. Neural tuning functions during directional planning of visuomotor rotation \textit{In Prep}.
+
 
 ### Conference Presentations
-1. **Tejas Savalia**, Jeffrey Starns, and Andrew Cohen, “Random walk length modulates structure acquisition in modular graphs,” [*COSYNE, 2024*](https://drive.google.com/file/d/1izGciiV_bXzsof3fHTlDrsKn195UB47A/view?usp=drive_link)
 
-2. **Tejas Savalia**, Andrew Cohen, Rosemary Cowell, and David Huber. Reward changes are more disruptive than stimulus changes to implicit sequence learning of a community structure, *CEMS, 2023*.
+- **Tejas Savalia**, Sophia Martin, Sagarika Devarayapuram Ramakrishnan, and Alexandra O. Cohen. Brain connectivity and representations encode positive affect in dynamic experiences *Upcoming Poster at SFN 2025*
 
-3. **Tejas Savalia**, Rosemary Cowell and David Huber, "Leap before you look": Conditions that promote implicit visuomotor adaptation without explicit learning. *Talk  at Psychonomics, 2022*.
+- Bria Slade, **Tejas Savalia**, and Alexandra O. Cohen. The association between trait reward responsiveness and adolescent striatum activation. *Poster at Summer Undergraduate Research Symposium, Emory University 2025*
 
-4. **Tejas Savalia**, Cristina Ceja, Rosemary Cowell, Cindy Xiong. "Estimating Biases in Line Charts: Effects of Shape and Response Modality". *OPAM, 2022*. 
+- Katie Oshins, Michelle Sauceda, **Tejas Savalia**, Sophia Martin, Alexendra O. Cohen, (2025). Individual and developmental differences in emotional learning. *Talk at the Undergraduate Research Symposium, Emory University*
 
-5. **Tejas Savalia**, Cristina Ceja, Rosemary Cowell, Cindy Xiong. "Visual and Verbal Data Estimation Errors are Modulated by Chart Type". *Visual Science Society, 2022*. 
+- **Tejas Savalia**, Sophia Martin, Sagarika Devarayapuram Ramakrishnan, and Alexandra O. Cohen, “Whole brain decoding of positive affect. *CNS, 2024*” 
 
-6. **Tejas Savalia**, Rosemary Cowell, David Huber, "Implicit Learning in Absence of Explicit Learning in a Visuomotor Adaptation Task." Poster Presentation in *Psychonomics, 2021.*
+- **Tejas Savalia**, Jeffrey Starns, and Andrew Cohen, “Implicit event boundaries are remembered better in a statistical learning task. *Psychonomics, 2024*” 
 
-7. **Tejas Savalia**, Rosemary Cowell, David Huber, ``Learning to Learn: Modeling Time Course of Visuomotor Adaptation.'' Virtual poster presentation in *Annual meeting for the Society for Mathematical Psychology, 2020*. [Youtube Link](https://www.youtube.com/watch?v=vjP7YCm0bTU)
+- **Tejas Savalia**, Jeffrey Starns, and Andrew Cohen, “Random walk length modulates structure acquisition in modular graphs,” [*COSYNE, 2024*](https://drive.google.com/file/d/1izGciiV_bXzsof3fHTlDrsKn195UB47A/view?usp=drive_link)
 
-8. **Tejas Savalia**, Rosemary Cowell and David Huber, "Learning a novel perception-action mapping: Error magnitude, speed/accuracy emphasis, and reinforcement learning."  Poster Presentation in *Psychonomics, 2019.* 
+- **Tejas Savalia**, Andrew Cohen, Rosemary Cowell, and David Huber. Reward changes are more disruptive than stimulus changes to implicit sequence learning of a community structure, *CEMS, 2023*.
+
+- **Tejas Savalia**, Rosemary Cowell and David Huber, "Leap before you look": Conditions that promote implicit visuomotor adaptation without explicit learning. *Talk  at Psychonomics, 2022*.
+
+- **Tejas Savalia**, Cristina Ceja, Rosemary Cowell, Cindy Xiong. "Estimating Biases in Line Charts: Effects of Shape and Response Modality". *OPAM, 2022*. 
+
+- **Tejas Savalia**, Cristina Ceja, Rosemary Cowell, Cindy Xiong. "Visual and Verbal Data Estimation Errors are Modulated by Chart Type". *Visual Science Society, 2022*. 
+
+- **Tejas Savalia**, Rosemary Cowell, David Huber, "Implicit Learning in Absence of Explicit Learning in a Visuomotor Adaptation Task." Poster Presentation in *Psychonomics, 2021.*
+
+- **Tejas Savalia**, Rosemary Cowell, David Huber, ``Learning to Learn: Modeling Time Course of Visuomotor Adaptation.'' Virtual poster presentation in *Annual meeting for the Society for Mathematical Psychology, 2020*. [Youtube Link](https://www.youtube.com/watch?v=vjP7YCm0bTU)
+
+- **Tejas Savalia**, Rosemary Cowell and David Huber, "Learning a novel perception-action mapping: Error magnitude, speed/accuracy emphasis, and reinforcement learning."  Poster Presentation in *Psychonomics, 2019.* 
 
 
 

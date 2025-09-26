@@ -12,6 +12,10 @@ See my [scholar profile](https://scholar.google.com/citations?user=WRdEP-cAAAAJ&
 
 ## News: 
 
+- Sep 2025: First postdoc project preprint: [Neural representations and functional connections underlie distinct and shared positive affect](https://osf.io/preprints/psyarxiv/4kycg_v1)
+
+- March 2025: New Preprint: [Implicit boundaries are remembered better than non-boundaries in statistical learning](https://osf.io/preprints/psyarxiv/x79ah_v2/)
+
 - Sep 2024: Started working as a postdoc at the LumenLab.
 
 - Aug 2024: Completed my dissertation at UMass. 
