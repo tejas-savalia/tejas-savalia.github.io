@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tejas Savalia">
+<meta name="author" content="Jeffrey J. Starns">
+<meta name="author" content="Andrew L. Cohen">
+
+<title>Tejas Savalia – Implicit boundaries are remembered better than non-boundaries in statistical learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id= G-4C3HTNZFPQ"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', ' G-4C3HTNZFPQ', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+<meta property="og:title" content="Tejas Savalia - Implicit boundaries are remembered better than non-boundaries in statistical learning">
+<meta property="og:description" content="">
+<meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta property="og:site_name" content="Tejas Savalia">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Tejas Savalia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../mds/cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../mds/publications.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://twitter.com/SavaliaTejas" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/tejas-savalia-8201888a/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://github.com/tejas-savalia" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://scholar.google.com/citations?user=25KCLG8AAAAJ&amp;hl=en" title="{{< iconify fa6-brands google-scholar >}}" class="quarto-navigation-tool px-1" aria-label="{{< iconify fa6-brands google-scholar >}}"><i class="bi bi-"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a>
+  <ul class="collapse">
+  <li><a href="#participants" id="toc-participants" class="nav-link" data-scroll-target="#participants">Participants</a></li>
+  <li><a href="#stimuli" id="toc-stimuli" class="nav-link" data-scroll-target="#stimuli">Stimuli</a></li>
+  <li><a href="#design-and-procedures" id="toc-design-and-procedures" class="nav-link" data-scroll-target="#design-and-procedures">Design and Procedures</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#diffusion-modeling" id="toc-diffusion-modeling" class="nav-link" data-scroll-target="#diffusion-modeling">Diffusion Modeling</a></li>
+  <li><a href="#converging-evidence-for-better-implicit-boundary-memory-using-alternative-metrics" id="toc-converging-evidence-for-better-implicit-boundary-memory-using-alternative-metrics" class="nav-link" data-scroll-target="#converging-evidence-for-better-implicit-boundary-memory-using-alternative-metrics">Converging evidence for better implicit boundary memory using alternative metrics</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#data-availibility-statement" id="toc-data-availibility-statement" class="nav-link" data-scroll-target="#data-availibility-statement">Data Availibility Statement</a></li>
+  <li><a href="#funding" id="toc-funding" class="nav-link" data-scroll-target="#funding">Funding</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Implicit boundaries are remembered better than non-boundaries in statistical learning</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Tejas Savalia <a href="mailto:tejas.savalia7@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-9886-2738" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Massachusetts Amherst
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Jeffrey J. Starns </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Massachusetts Amherst
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Andrew L. Cohen </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Massachusetts Amherst
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>Changes in temporal context have been shown to impact episodic memory of the ‘boundary’ items involved in creating this temporal context. However, in most prior studies, changes in temporal context have been operationalized explicitly, typically through perceptually obvious visual or auditory stimuli that form a boundary between the previous and current context. In this work, we explore how recognition of items is impacted when temporal context change is operationalized implicitly through the order of presentation during the study phase. 57 participants, were exposed to a rotation judgment cover task for 15 randomly generated polygon items. Around half of the participants were presented with these items in a random order. The other half were presented with items such that 6 items formed ‘boundaries’ that led in and out of 3 temporal clusters. Similar to findings where boundaries are explicitly operationalized, we show that implicit boundaries are also better remembered than non-boundary items.</p>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>We receive a continuous stream of sensory information in our daily lives. In order to make sense of it, we often parse it into meaningful chunks for storage, retrieval, and comprehension. For example, we may recall our drive to work as a series of discrete events: getting into the car, getting coffee, picking up a carpool colleague, hitting traffic on a particular street, parking, and walking over to the office. What aspects of the incoming stream help us organize continuous temporal information in discrete chunks? Cognitive psychologists have studied temporal chunking under several domains from event boundaries <span class="citation" data-cites="clewett2019transcending zacks2007event rouhani2020reward rouhani2018dissociable dubrow2013influence baldwin2008segmenting">(<a href="#ref-clewett2019transcending" role="doc-biblioref">Clewett, DuBrow, and Davachi 2019</a>; <a href="#ref-zacks2007event" role="doc-biblioref">Zacks and Swallow 2007</a>; <a href="#ref-rouhani2020reward" role="doc-biblioref">Rouhani et al. 2020</a>; <a href="#ref-rouhani2018dissociable" role="doc-biblioref">Rouhani, Norman, and Niv 2018</a>; <a href="#ref-dubrow2013influence" role="doc-biblioref">DuBrow and Davachi 2013</a>; <a href="#ref-baldwin2008segmenting" role="doc-biblioref">Baldwin et al. 2008</a>)</span>, language learning, <span class="citation" data-cites="romberg2010statistical knowlton1992intact">(<a href="#ref-romberg2010statistical" role="doc-biblioref">Romberg and Saffran 2010</a>; <a href="#ref-knowlton1992intact" role="doc-biblioref">Knowlton, Ramus, and Squire 1992</a>)</span>, categorization <span class="citation" data-cites="unger2022ready gabay2015incidental">(<a href="#ref-unger2022ready" role="doc-biblioref">Unger and Sloutsky 2022</a>; <a href="#ref-gabay2015incidental" role="doc-biblioref">Gabay et al. 2015</a>)</span>, and motor sequencing <span class="citation" data-cites="bera2021motor tremblay2010movement savalia2016unified ostlund2009evidence">(<a href="#ref-bera2021motor" role="doc-biblioref">Bera, Shukla, and Bapi 2021</a>; <a href="#ref-tremblay2010movement" role="doc-biblioref">Tremblay et al. 2010</a>; <a href="#ref-savalia2016unified" role="doc-biblioref">Savalia, Shukla, and Bapi 2016</a>; <a href="#ref-ostlund2009evidence" role="doc-biblioref">Ostlund, Winterbauer, and Balleine 2009</a>)</span>. Chunking a repeated sequence of experiences is crucial to abstracting patterns in the environment and forming habits for quick and efficient interactions with the environment <span class="citation" data-cites="dezfouli2012habits smith2016habit dolan2013goals dezfouli2014habits gershman2010learning botvinick2012hierarchical">(<a href="#ref-dezfouli2012habits" role="doc-biblioref">Dezfouli and Balleine 2012</a>; <a href="#ref-smith2016habit" role="doc-biblioref">Smith and Graybiel 2016</a>; <a href="#ref-dolan2013goals" role="doc-biblioref">Dolan and Dayan 2013</a>; <a href="#ref-dezfouli2014habits" role="doc-biblioref">Dezfouli, Lingawi, and Balleine 2014</a>; <a href="#ref-gershman2010learning" role="doc-biblioref">Gershman and Niv 2010</a>; <a href="#ref-botvinick2012hierarchical" role="doc-biblioref">Botvinick 2012</a>)</span>.</p>
+<p><span style="color: black">Event boundaries are traditionally demarcated by changes in the ongoing context, where context is often operationalized, explicitly by visual or semantic properties of the stimuli. Event segmentation models suggest that these boundary points serve a unique purpose in parsing the continuous stream of information that we receive. In particular, event boundaries contribute to both the segmentation of the continuous stream and the integration of information within these boundaries.</span> These event boundaries are, for example, shown to be remembered better <span class="citation" data-cites="swallow2009event rouhani2018dissociable rouhani2018dissociable zacks2020event radvansky2017event heusser2018perceptual">(<a href="#ref-swallow2009event" role="doc-biblioref">Swallow, Zacks, and Abrams 2009</a>; <a href="#ref-rouhani2018dissociable" role="doc-biblioref">Rouhani, Norman, and Niv 2018</a>, <a href="#ref-rouhani2018dissociable" role="doc-biblioref">2018</a>; <a href="#ref-zacks2020event" role="doc-biblioref">Zacks 2020</a>; <a href="#ref-radvansky2017event" role="doc-biblioref">Radvansky and Zacks 2017</a>; <a href="#ref-heusser2018perceptual" role="doc-biblioref">Heusser et al. 2018</a>)</span>, serve as points of retrieval <span class="citation" data-cites="michelmann2023evidence">(<a href="#ref-michelmann2023evidence" role="doc-biblioref">Michelmann, Hasson, and Norman 2023</a>)</span> and points of replay to promote long term memory <span class="citation" data-cites="hahamy2023human sols2017event">(<a href="#ref-hahamy2023human" role="doc-biblioref">Hahamy, Dubossarsky, and Behrens 2023</a>; <a href="#ref-sols2017event" role="doc-biblioref">Sols et al. 2017</a>)</span> and easy parsing, help integrate memory across time <span class="citation" data-cites="clewett2019transcending">(<a href="#ref-clewett2019transcending" role="doc-biblioref">Clewett, DuBrow, and Davachi 2019</a>)</span>, and separate across boundary events while collapsing within boundary events <span class="citation" data-cites="clewett2019transcending lositsky2016neural ezzyat2014similarity brunec2018boundaries">(<a href="#ref-clewett2019transcending" role="doc-biblioref">Clewett, DuBrow, and Davachi 2019</a>; <a href="#ref-lositsky2016neural" role="doc-biblioref">Lositsky et al. 2016</a>; <a href="#ref-ezzyat2014similarity" role="doc-biblioref">Ezzyat and Davachi 2014</a>; <a href="#ref-brunec2018boundaries" role="doc-biblioref">Brunec, Moscovitch, and Barense 2018</a>)</span>.</p>
+<p>In most prior studies, event boundaries have been studied using explicit, typically visual context shifts. For example, <span class="citation" data-cites="heusser2018perceptual">Heusser et al. (<a href="#ref-heusser2018perceptual" role="doc-biblioref">2018</a>)</span> showed participants a stream of images surrounded by colored borders that visually operationalized context. Event boundaries were therefore operationalized by changing the color of the surrounding border after a few trials. Event boundaries as a function of explicit context change have also been operationalized by changing the associated stimulus <span class="citation" data-cites="ezzyat2014similarity">(<a href="#ref-ezzyat2014similarity" role="doc-biblioref">Ezzyat and Davachi 2014</a>)</span> – participants were presented with a pair of images on each trial, with the ‘scene’ image in the pair remaining constant for a short sequence of trials, creating a context, amid trial-unique the target images (‘object’ or ‘face’). As participants made judgments about the target image category, the associated scene occasionally changed, thus creating an event boundary <span class="citation" data-cites="ezzyat2014similarity">(<a href="#ref-ezzyat2014similarity" role="doc-biblioref">Ezzyat and Davachi 2014</a>)</span>. In these and other previous studies on event boundaries, context changes were operationalized as perceptual or semantic shifts in ongoing sets of events that were visually presented to participants <span class="citation" data-cites="swallow2009event baldassano2017discovering">(<a href="#ref-swallow2009event" role="doc-biblioref">Swallow, Zacks, and Abrams 2009</a>; <a href="#ref-baldassano2017discovering" role="doc-biblioref">Baldassano et al. 2017</a>)</span>. In more recent work, context change has also been operationalized as changes in ongoing reward contingencies associated with each stimulus <span class="citation" data-cites="rouhani2020reward">(<a href="#ref-rouhani2020reward" role="doc-biblioref">Rouhani et al. 2020</a>)</span>.</p>
+<p>Consistent findings across most studies in explicitly operationalized event boundaries, events or stimuli in an experimental paradigm that signal a shift in the ongoing context, show that event boundaries are often remembered better <span class="citation" data-cites="swallow2009event radvansky2017event heusser2018perceptual clewett2019transcending rouhani2020reward ezzyat2014similarity baldassano2017discovering">(<a href="#ref-swallow2009event" role="doc-biblioref">Swallow, Zacks, and Abrams 2009</a>; <a href="#ref-radvansky2017event" role="doc-biblioref">Radvansky and Zacks 2017</a>; <a href="#ref-heusser2018perceptual" role="doc-biblioref">Heusser et al. 2018</a>; <a href="#ref-clewett2019transcending" role="doc-biblioref">Clewett, DuBrow, and Davachi 2019</a>; <a href="#ref-rouhani2020reward" role="doc-biblioref">Rouhani et al. 2020</a>; <a href="#ref-ezzyat2014similarity" role="doc-biblioref">Ezzyat and Davachi 2014</a>; <a href="#ref-baldassano2017discovering" role="doc-biblioref">Baldassano et al. 2017</a>)</span>. Furthermore, events separated by explicit boundaries are perceived to be farther apart than events within boundaries, implying that events across boundaries are represented to be more distinct than events within boundaries <span class="citation" data-cites="clewett2019transcending ezzyat2014similarity brunec2018boundaries lositsky2016neural">(<a href="#ref-clewett2019transcending" role="doc-biblioref">Clewett, DuBrow, and Davachi 2019</a>; <a href="#ref-ezzyat2014similarity" role="doc-biblioref">Ezzyat and Davachi 2014</a>; <a href="#ref-brunec2018boundaries" role="doc-biblioref">Brunec, Moscovitch, and Barense 2018</a>; <a href="#ref-lositsky2016neural" role="doc-biblioref">Lositsky et al. 2016</a>)</span>.</p>
+<p>Recent work has shown that event boundaries can also be formed <em>without</em> explicit, perceptual changes in context. <span class="citation" data-cites="schapiro2013neural">Schapiro et al. (<a href="#ref-schapiro2013neural" role="doc-biblioref">2013</a>)</span> showed participants a series of meaningless shapes. Unknown to the participants, the stream followed a modular graph structure (see Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>) where each shape was associated with a node of the graph and connections represented an equal probability of transitioning between nodes. After being exposed to the stimulus stream generated by such a random walk through the modular graph, participants were asked to hit a key when they felt there was a natural break in the stream. Participants pressed the key when they experienced the stream transition between clusters more frequently than when they experienced the stream between nodes within clusters. This finding has been linked to statistical learning of temporal graph structures and the effect of event boundaries is often measured by slowed reaction times when responding to a stimulus after experiencing a transition across-clusters than within-clusters in both visual and motor domains <span class="citation" data-cites="karuza2022value karuza2019human kahn2018network kahn2018network lynn2020abstract lynn2020human lynn2020humans">(<a href="#ref-karuza2022value" role="doc-biblioref">Karuza 2022</a>; <a href="#ref-karuza2019human" role="doc-biblioref">Karuza, Kahn, and Bassett 2019</a>; <a href="#ref-kahn2018network" role="doc-biblioref">Kahn et al. 2018</a>, <a href="#ref-kahn2018network" role="doc-biblioref">2018</a>; <a href="#ref-lynn2020abstract" role="doc-biblioref">Lynn, Kahn, et al. 2020</a>; <a href="#ref-lynn2020human" role="doc-biblioref">Lynn, Papadopoulos, et al. 2020</a>; <a href="#ref-lynn2020humans" role="doc-biblioref">Lynn and Bassett 2020</a>)</span>.</p>
+<p>Crucially, in these studies, unlike most explicit boundary experiment designs, there are no systematic perceptual differences between the stimuli associated with the boundary nodes and those associated with non-boundary nodes (See Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>, for example). Boundaries are instead operationalized solely as a function of the temporal order in which these stimuli are presented. These implicitly operationalized boundaries (boundaries <em>not</em> marked by change in perceptual context) have been labeled as ‘event boundaries’, suggesting that implicit boundaries share representational properties with explicitly operationalized boundaries typically studied in the event boundary literature <span class="citation" data-cites="schapiro2013neural">(<a href="#ref-schapiro2013neural" role="doc-biblioref">Schapiro et al. 2013</a>)</span>. However, past studies on implicit event boundaries have not assessed the memory representations of these boundaries using the same tests used in explicitly operationalized boundary paradigms, instead relying on observations from reaction times or the rate at which boundaries are detected as ‘natural breaks’ in a post-exposure parsing task <span class="citation" data-cites="schapiro2013neural">(<a href="#ref-schapiro2013neural" role="doc-biblioref">Schapiro et al. 2013</a>)</span>. Testing whether the two types of event boundaries share effects on memory will thus provide direct evidence for a common mechanism underlying boundary formation and provide a unifying framework to study event cognition.</p>
+<p>In this work, we test implicitly operationalized boundaries to assess whether they elicit the same behavioral properties as explicitly operationalized boundaries. In particular, we exposed participants to randomly generated meaningless polygon stimuli such that the trial order was structured by the graph structure previously used in <span class="citation" data-cites="schapiro2013neural">(<a href="#ref-schapiro2013neural" role="doc-biblioref">Schapiro et al. 2013</a>)</span> in contrast to a random, unstructured trial order. We then tested whether participants exposed to structured trial order recognized boundary items better (or worse) than non-boundary items. To preview our results, implicit boundary events are indeed recognized better than non-boundary events, providing support for a shared representation with explicitly operationalized boundaries.</p>
+</section>
+<section id="method" class="level1">
+<h1>Method</h1>
+<section id="participants" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="participants">Participants</h2>
+<p>63 undergraduate students at the University of Massachusetts Amherst participated in this study. Participants were at least 18 years of age and were compensated via course credit. All study procedures were approved by the University Institutional Review Board, and all participants provided their informed consent for participating in this research study. Data from 6 participants who did not complete the study were discarded from further analyses. The participant sample size was not pre-determined via a statistical procedure but was equivalent to that of similar previous studies <span class="citation" data-cites="heusser2018perceptual">(<a href="#ref-heusser2018perceptual" role="doc-biblioref">Heusser et al. 2018</a>)</span>.</p>
+</section>
+<section id="stimuli" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="stimuli">Stimuli</h2>
+<p>Random closed polygons were generated to be used as stimuli for this experiment by connecting 6 vertex locations. The vertices of the polygons were pseudorandomly generated as follows: Cartesian coordinates of two vertices were drawn from a normal distribution centered around 0 with a standard deviation of 0.1 inches. The coordinates of the remaining four vertices were drawn from uniform distributions between 0.1 and 0.3 inches (i.e., the other 4 coordinates were at least 0.1 inches and at most 0.3 inches away from the center). A total of 300 polygons were generated, and 60 (15 were ‘old’ (studied) and 45 were ‘new’ (unstudied)) were randomly chosen from this set of 300 and used for each participant (See Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a> for examples). All presented stimuli were set to occupy 17.5% of the height of the visual display.</p>
+</section>
+<section id="design-and-procedures" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="design-and-procedures">Design and Procedures</h2>
+<p>Participants were randomly assigned to either a structured graph exposure or an unstructured graph exposure group. The overall experimental procedures were the same across both groups.</p>
+<p>The experiment consisted of 3 phases: study, exposure, and test. The study phase was shown once at the beginning of the study. The exposure and test phases were interleaved and repeated three times. Each exposure phase consisted of 250 trials, and each test phase consisted of 30 trials.</p>
+<p>From the set of 60 stimuli chosen for each participant, 15 were randomly chosen as ‘old’ stimuli to be studied during the study and exposure phases. The remaining 45 were set to be used as ‘new’ items across the 3 recognition memory test phases described below (15 per test). The study phase was always at the beginning of the experiment, where participants were shown all 15 polygons in a 3x5 grid (See Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>). They were asked to carefully examine these polygons and to remember their orientation, as they would be tested on polygon orientations in the next phase of the experiment. After 4 seconds of the study phase, participants were presented an option to move to the next phase once they were ready – thus ensuring they viewed all 15 items for a minimum of 4 seconds. The study phase was followed by interleaved exposure and test phases phase for 3 blocks (See Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>). For each block of 250 exposure trials, participants were presented with one of these 15 polygons at a time and asked to judge whether the presented polygon was in its original orientation or rotated – the presented orientation was randomly determined to be the canonical orientation shown during the study phase or rotated by <span class="math inline">\(90^\circ\)</span> clockwise or counterclockwise. Participants were provided feedback on their accuracy on each rotation judgment response, and an on-screen score was maintained in the top right corner to motivate accurate responses. Polygons were surrounded by a (purple, orange, or dark green) colored border to use for a later source memory test. The colored border was randomly assigned to each polygon for the study, with each color assigned to 5 of the 15 exposure polygons.</p>
+<p>Each polygon with its border was associated with a node in the graphs shown in Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>. The edges of the graphs determine the order in which the polygons were shown to participants during exposure. The trial order was determined by a random walk through these graphs – following each trial (i.e., presentation of a polygon associated with a node), the subsequent trial was determined by a random selection between all connected nodes (hence their associated polygons). For 27 participants in the structured exposure group, the trial order was determined by a random walk through the structured modular graph (Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>A) and for 30 participants in the unstructured exposure group, it was determined by a random walk through the unstructured graph (Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>B). Magenta nodes in Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>A are ‘boundary’ nodes that lead into and out of a cluster, whereas gray nodes are ‘non-boundary’ nodes. Note that the unstructured graph does not have boundary nodes in function, but to maintain the number of nodes assigned as boundaries and non-boundaries consistent across the two conditions for analyses, 6 corresponding nodes in the unstructured graph are labeled ‘boundary’ with 9 others serving as ‘non-boundary’ nodes. Finally, unlike in the structured graph condition, the same polygon could be presented in consecutive trials (as denoted by node recurrent connections).</p>
+<figure id="fig:experiment-design" class="figure">
+<figure class="figure">
+<img src="figures/structured_graph.png" width="100%" class="figure-img">
+<figcaption aria-hidden="true">
+</figcaption>
+</figure>
+<figure class="figure">
+<img src="figures/unstructured_graph.png" width="100%" class="figure-img">
+<figcaption aria-hidden="true">
+</figcaption>
+</figure>
+<figure class="figure">
+<img src="figures/initial_study_phase.png" width="100%" class="figure-img">
+<figcaption aria-hidden="true">
+</figcaption>
+</figure>
+<figure class="figure">
+<img src="figures/exp_design.png" width="100%" class="figure-img">
+<figcaption aria-hidden="true">
+</figcaption>
+</figure>
+<figcaption>
+Design schematic for the experiment. <strong>A</strong>. Modular Graph for participants in the structured exposure group. <strong>B</strong> Graph used for participants in unstructured exposure group. Magenta nodes in both graphs are labeled boundary nodes for analyses. <strong>C</strong> Study phase showing all 15 polygons that will be shown one at a time during exposure. <strong>D</strong> Three alternating blocks of sequence exposure and recognition test were presented. A Stroop task was conducted prior to the final recognition test.
+</figcaption>
+</figure>
+<p>After each block of the exposure phase, participants went through a recognition memory test (Figure <a href="#fig:experiment-design" data-reference-type="ref" data-reference="fig:experiment-design">1</a>). They were shown the 15 ‘old’ items from the exposure phase (in their original orientation) in addition to 15 new random polygon items (chosen from the set of 45 selected for each participant) and were asked to determine whether each of these polygons was old or new. The order of presentation of old and new items was randomized during the recognition memory test. A Stroop task was used prior to the recognition test of the third (final) block to wash out any effects of short-term memory. We avoided using the Stroop task before the recognition tests of the first two blocks to avoid longer, additional task-switching breaks in the continuous exposure sequences hence allowing the participants to develop a representation of the underlying transition structure.</p>
+<p>After the final recognition memory test, participants went through a source memory test. Each of the 15 studied items was shown without the colored borders that surrounded them during exposure. Participants were asked to choose which of the three colored borders, provided as on-screen options, surrounded any particular item. This source memory task was added to provide an additional signal for memory in case of ceiling effects of recognition memory tasks. However, no analyses have been done on this source memory task.</p>
+<section id="software-note." class="level4">
+<h4 class="anchored" data-anchor-id="software-note.">Software note.</h4>
+<p>The experiment was designed using Psychopy <span class="citation" data-cites="peirce2007psychopy">(<a href="#ref-peirce2007psychopy" role="doc-biblioref">Peirce 2007</a>)</span>, and conducted on desktop computers running Windows 7 with a resolution of 1920x1080. All linear models presented in the next section were conducted using the Python package Bambi <span class="citation" data-cites="capretto2022bambi">(<a href="#ref-capretto2022bambi" role="doc-biblioref">Capretto et al. 2022</a>)</span>, whereas the Drift diffusion model was fit using the HSSM toolbox <span class="citation" data-cites="fenglerhssm">(<a href="#ref-fenglerhssm" role="doc-biblioref">Fengler et al., n.d.</a>)</span>. Model comparisons and visualizations were created using Arviz <span class="citation" data-cites="kumar2019arviz">(<a href="#ref-kumar2019arviz" role="doc-biblioref">Kumar et al. 2019</a>)</span> and Seaborn <span class="citation" data-cites="waskom2021seaborn">(<a href="#ref-waskom2021seaborn" role="doc-biblioref">Waskom 2021</a>)</span>.</p>
+</section>
+</section>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<p>The overall average accuracy and median response time patterns during the exposure phase, for each participant across node and graph types for the three exposure blocks, are shown in Figure <a href="#fig:exposure-stats" data-reference-type="ref" data-reference="fig:exposure-stats">4</a> (See Table <a href="#tab:exp2-rt-accuracy-stats" data-reference-type="ref" data-reference="tab:exp2-rt-accuracy-stats">1</a> for complete descriptive statistics). Exposure accuracy is measured by the proportion of trials in which participants correctly recognized the canonical orientation of the polygons. Since participants are given feedback on their rotation judgment during exposure, we expect that this rotation judgment accuracy will increase and reaction times will decrease over trials.</p>
+<p>To estimate the learning effects, we fit a Bayesian hierarchical mixed effects logistic regression model for rotation judgment accuracy and a hierarchical mixed effects linear regression model to estimate the rotation judgment <span style="color: black">log</span> reaction times. The models included main effects of node type (boundary vs non-boundary), graph-type (structured vs unstructured), and (log) trial number along with 2- and 3-way interactions between all factors and a varying participant intercept. As expected, rotation judgment accuracy increased (log trials <span class="math inline">\(\beta = 0.13\)</span>, <span class="math inline">\(95\%\)</span>, HDI [0.08, 0.17]) and <span style="color: black">log</span> response times decreased (<span style="color: black">log trials <span class="math inline">\(\beta = -0.21\)</span>, <span class="math inline">\(95\%\)</span>, HDI [-0.22, -0.19]</span>) with exposure. While we find no reliable main effects of graph type on response times or accuracy, we observe mixed effects of node type on both response times and accuracy measures, along with interactions with other factors (such as graph type) in our models. (See Tables <a href="#tab:exposure_rts" data-reference-type="ref" data-reference="tab:exposure_rts">2</a> and <a href="#tab:exposure_accuracy" data-reference-type="ref" data-reference="tab:exposure_accuracy">3</a> for complete model statistics).</p>
+<p>If participants accurately recognize the orientation of exposure items, they are also likely to recognize these items better at test, regardless of their role in the underlying graph structure. Thus, differences in exposure accuracy may impact our key measure of interest. i.e., recognition accuracy. To account for possible differences in encoding at exposure, we include exposure accuracy as a covariate in our analysis of recognition memory below.</p>
+<figure id="fig:exposure-stats" class="figure">
+<figure id="fig:acc-exposure" class="figure">
+<p>
+<img src="figures/exposure_accuracy_boundaryhued.png" width="100%" alt="image" class="figure-img"> <span id="fig:acc-exposure" label="fig:acc-exposure"></span>
+</p>
+</figure>
+<figure id="fig:rt-exposure" class="figure">
+<p>
+<img src="figures/exposure_rt_boundaryhued.png" width="100%" alt="image" class="figure-img"> <span id="fig:rt-exposure" label="fig:rt-exposure"></span>
+</p>
+</figure>
+<figcaption>
+<span style="color: black">(Top panels) Mean accuracy and (Bottom panels) response times at exposure in the rotation judgment task separated by graph type (left vs right panels) and node type (hue). Error bars are 95% CI across participants. Behavioral measures are collapsed across trials within a block and participants for plotting. Statistical tests were performed on trial-level data.</span>
+</figcaption>
+</figure>
+<section id="diffusion-modeling" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="diffusion-modeling">Diffusion Modeling</h3>
+<p>The overall recognition accuracy and response time data separated by the test stimuli types (new, boundary, and non-boundary) are shown in Figure <a href="#fig:memory-results" data-reference-type="ref" data-reference="fig:memory-results">7</a>.</p>
+<figure id="fig:memory-results" class="figure">
+<figure id="fig:acc-memory" class="figure">
+<p>
+<img src="figures/memory_accuracy_boundaryhued.png" width="100%" alt="image" class="figure-img"> <span id="fig:acc-memory" label="fig:acc-memory"></span>
+</p>
+</figure>
+<figure id="fig:rt-memory" class="figure">
+<p>
+<img src="figures/memory_rt_boundaryhued.png" width="100%" alt="image" class="figure-img"> <span id="fig:rt-memory" label="fig:rt-memory"></span>
+</p>
+</figure>
+<figcaption>
+<span style="color: black">(Top panels) Mean accuracy and (Bottom panels) response times in the recognition memory test separated by graph type (left vs right panels) and node type (hue). Error bars are 95% CI across participants. Behavioral measures are collapsed across trials within a block and participants for plotting. Statistical tests were performed on trial-level data.</span>
+</figcaption>
+</figure>
+<p>To assess the recognition memory differences between the boundary and non-boundary items and leverage variability in response times, we use the Drift Diffusion Model (DDM, Figure <a href="#fig:ddm-model" data-reference-type="ref" data-reference="fig:ddm-model">8</a>) commonly used in choice tasks. The DDM, which falls under a class of sequential sampling models, has been a widely successful model in modeling two-choice tasks in recognition memory <span class="citation" data-cites="ratcliff2004diffusion ratcliff2022discriminating starns2014using starns2014validating ratcliff2009modeling">(<a href="#ref-ratcliff2004diffusion" role="doc-biblioref">Ratcliff, Thapar, and McKoon 2004</a>; <a href="#ref-ratcliff2022discriminating" role="doc-biblioref">Ratcliff, Scharre, and McKoon 2022</a>; <a href="#ref-starns2014using" role="doc-biblioref">Starns 2014</a>; <a href="#ref-starns2014validating" role="doc-biblioref">Starns and Ratcliff 2014</a>; <a href="#ref-ratcliff2009modeling" role="doc-biblioref">Ratcliff and Starns 2009</a>)</span>.</p>
+<div id="fig:ddm-model" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/ddm.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption><span style="color: black">The Drift Diffusion Model of Choice Response Times for Old/New recognition memory tasks. The two-alternative decision task is represented by two boundaries, where the ceiling corresponds to ‘old’ responses and the floor corresponds to ‘new’ responses. Corresponding distributions are hypothetical response time distributions for ‘old’ and ‘new’ responses, respectively. The separation of the boundaries is modeled by the boundary parameter ‘<span class="math inline">\(a\)</span>’. The sequential sampling process starts at point ‘<span class="math inline">\(z\)</span>’, which represents a bias towards old or new responses. Noisy evidence towards the old or new boundary is accumulated at a drift rate ‘<span class="math inline">\(v\)</span>’. ‘<span class="math inline">\(t_{er}\)</span>’ represents the time spent in non-decision processes (e.g., perceiving the stimuli, and enabling motor effectors for response)</span></figcaption>
+</figure>
+</div>
+<p>Briefly, the DDM assumes that at the time of choice, evidence from the presented test item accumulates sequentially over time towards one of the two boundaries. For a previously studied item presented at test, the evidence tends to accumulate noisily towards the ‘old’ boundary whereas for a non-studied item, the evidence accumulates towards the ‘new’ boundary. The rate of evidence accumulation is controlled by the drift rate parameter, <span class="math inline">\(v\)</span>. A more positive <span class="math inline">\(v\)</span> would imply more likely evidence accumulation towards the old boundary, whereas a more negative <span class="math inline">\(v\)</span> implies more likely evidence accumulation towards the new boundary. Participants may be biased towards making an old or a new response at test; this bias is measured by the starting point parameter, <span class="math inline">\(z\)</span>. The boundary separation parameter <span class="math inline">\(a\)</span> determines how the amount of evidence that needs to be accumulated to make a decision – a larger <span class="math inline">\(a\)</span> implying a difficult task or cautious responses. Finally, the observed response consists of cognitive processes not affiliated with decision-making (such as time for the motor systems to click the relevant key once a decision has been made) which are modeled by a non-decision time parameter <span class="math inline">\(t_{er}\)</span>.</p>
+<p>Prior work has shown that the memory strength of previously studied items impacts the drift rate towards old/new responses <span class="citation" data-cites="ratcliff2004diffusion ratcliff2022discriminating">(<a href="#ref-ratcliff2004diffusion" role="doc-biblioref">Ratcliff, Thapar, and McKoon 2004</a>; <a href="#ref-ratcliff2022discriminating" role="doc-biblioref">Ratcliff, Scharre, and McKoon 2022</a>)</span>. A higher positive drift rate parameter implies a stronger match to items in memory which leads to a quicker accumulation of evidence towards the ‘old’ response boundary. Similarly, a stronger mismatch to memory (as measured by the higher negative drift rate parameter) implies a quicker accumulation of evidence towards the ‘new’ response boundary <span class="citation" data-cites="ratcliff2004diffusion ratcliff2022discriminating">(<a href="#ref-ratcliff2004diffusion" role="doc-biblioref">Ratcliff, Thapar, and McKoon 2004</a>; <a href="#ref-ratcliff2022discriminating" role="doc-biblioref">Ratcliff, Scharre, and McKoon 2022</a>)</span>.</p>
+<p>If implicitly operationalized event boundaries in this study indeed share representations with explicitly operationalized event boundaries, the memory strength of the boundary node items should be enhanced relative to those non-boundary node items for participants exposed to a random walk through the structured graph. No such difference is expected for participants exposed to a random walk in an unstructured graph, since there are no functional boundary nodes.</p>
+<p>The drift rate parameter of the DDM has been associated with memory strength <span class="citation" data-cites="starns2014using">(<a href="#ref-starns2014using" role="doc-biblioref">Starns 2014</a>)</span>. The drift rate should thus be higher for boundary nodes for structured random walk participants than for non-boundary nodes. This difference in boundary vs non-boundary item drift rates should be relatively higher for participants exposed to a random walk in the structured graph than for the participants in our control condition. On the other hand, for participants exposed to a random walk in the unstructured graph, the drift rates between items assigned boundary and non-boundary <em>labels</em> should be equivalent.</p>
+<p>To test this hypothesis, we parameterized the DDM for the recognition tasks in our study as follows: <span class="math display">\[\begin{aligned}
+        v \sim 0 + exposure\ accuracy + node\ type + (node\ type|participant)\\
+        z \sim block + (1|participant) \\
+        a \sim block + (1|participant) \\
+        t_{er} \sim (1|participant)
+    \end{aligned}\]</span></p>
+<p>We allow the drift rate parameter, <em>v</em> to vary for each node type (note that for recognition tests, node types are labeled ‘boundary’, ‘non-boundary’, and ‘new’) with accuracy at exposure as a covariate. For old items, the accuracy at exposure was the proportion of trials participants correctly recognized the true orientation in the exposure block immediately before the current test block. For new items, accuracy at exposure was fixed at the average accuracy across all old items – thus assuming that the stronger encoding of an old item improves recognition of a new item. We further assumed that over time, as participants get more familiar with the old items through repeated exposure, the amount of evidence required for them to choose an old/new response at test will be lower. We thus allowed the boundary parameter to change per block <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We also allowed the choice-bias parameter, <em>z</em>, to change over blocks to account for changing biases during the experiment. Finally, the non-decision time parameter was allowed to vary for each participant to account for individual differences in non-decision processes. <span style="color: black">The noise coefficient (scaling parameter) used for our modeling work is set to 1.</span> We also compared the models including node type to models without node type as a factor affecting drift rate for both structured and unstructured participants, along with including/excluding block effects in all parameters and present the model that best fit our data (See Tables <a href="#tab:model-compare-struct" data-reference-type="ref" data-reference="tab:model-compare-struct">6</a> and <a href="#tab:model-compare-unstruct" data-reference-type="ref" data-reference="tab:model-compare-unstruct">7</a> for comparison results and Figures <a href="#fig:ppc-structured" data-reference-type="ref" data-reference="fig:ppc-structured">12</a> and <a href="#fig:ppc-unstructured" data-reference-type="ref" data-reference="fig:ppc-unstructured">13</a> for posterior predictive distributions from the winning model to visualize model fits).</p>
+<section id="ddm-results" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="ddm-results">DDM Results</h4>
+<p>The modeling framework above incorporates response time distributions during recognition memory tasks. In particular, if an item is quickly and accurately recognized as old or new, in addition to good accuracy, such recognition would result in faster reaction times. This effect is captured by the drift rate parameter of the DDM.</p>
+<p>We tested whether boundary nodes have a higher drift rate than non-boundary nodes (operationalized implicitly as a function of the structured-graph-based trial order during exposure) by subtracting the posterior samples of the drift rate parameter for stimuli associated with non-boundary nodes from those associated with boundary nodes for both unstructured (control) and structured (experimental) graph types (Figure <a href="#fig:ddm-results" data-reference-type="ref" data-reference="fig:ddm-results">9</a>). We find that 95.6% of the posterior parameter difference between non-boundary and boundary node stimuli in the structured condition was above 0 (<span class="math inline">\(M = 0.15, 95\%\ HDI:[-0.035, 0.287]\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. In comparison, 49.6% of this difference distribution was above 0 for the unstructured condition (<span class="math inline">\(M = 0, 95\%\ HDI: [-0.16, 0.17]\)</span>) <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>We estimate the effect of interactions between node-type-dependent drift rate differences and conditions by subtracting the posterior difference estimates. While this difference of differences is not reliably above 0 (<span class="math inline">\(M = 0.147, 95\%HDI\ [-.084, .384]\)</span>) the interaction effect strongly trends towards statistical reliability with <span class="math inline">\(88.8\%\)</span> of posterior difference of differences samples above 0. <span style="color: black">Note that while we label 6 nodes in the unstructured graph as ‘boundary’ nodes, functionally, these are no different from non-boundary nodes, as each stimulus is randomly assigned to each node and each node is in turn connected to every other node of the graph. Results presented in Figure 5 come from a single random assignment of these nodes as boundary or non-boundary.</span></p>
+<div id="fig:ddm-results" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/ddm_results.png" class="img-fluid figure-img"></p>
+<figcaption><span style="color: black">Drift rate differences distributions. Differences between group-level posterior distributions of boundary and non-boundary nodes for unstructured (blue) and structured (orange) exposure conditions. A higher difference distribution implies faster drift rates for stimuli associated with boundary nodes. A significant proportion of the posterior samples of the difference distribution is above 0 for the structured (experimental) condition whereas the difference distribution is centered around 0 for the unstructured (control) condition.</span></figcaption>
+</figure>
+</div>
+<p>See Table <a href="#tab:ddm-params-structured" data-reference-type="ref" data-reference="tab:ddm-params-structured">4</a> and <a href="#tab:ddm-params-unstructured" data-reference-type="ref" data-reference="tab:ddm-params-unstructured">5</a> for full parameter statistics of the DDM for structured and unstructured conditions respectively. Interestingly, in both unstructured (<em>M(a block 1) = -0.17, 95%HDI [-0.21, -0.13]</em>, <em>M(a block 2) = -0.24, 95%HDI [-0.29, -0.2]</em>) and structured (<em>M(a block 1) = -0.18, 95%HDI [-0.23, -0.13]</em>, <em>M(a block 2) = -0.19, 95%HDI [-0.23, -0.14]</em>) graph conditions, the boundary parameter <em>a</em> is reliably lower in blocks 2 and 3 relative to block 1 implying that participants do seem to require less evidence in the later blocks to make their old or new decision. The bias parameter is lower for blocks 2 and 3 relative to block 1 in the unstructured graph condition (<em>M(z block 1) = -0.05, 95%HDI [-0.07, -0.02], M(z block 2) = -0.03, 95%HDI [-0.06, -0.01]</em>) but mixed in the structured graph condition (<em>M(z block 1) = -0.03, 95%HDI [-0.06, -0.01], M(z block 2) = -0.01, 95%HDI [-0.03, 0.02]</em>) implying that participants may alter their bias towards new responses in subsequent memory tests albeit, these bias effects, if they exist, are very small. Finally, new item recognition appears to be faster in the unstructured condition (<em>M = -1.19, 95%HDI [-1.5, -0.89]</em>) than in the structured condition (<em>M = -0.84, 95%HDI&nbsp;[-1.18, -0.52]</em>).</p>
+<p>The diffusion modeling results thus provide evidence that items that serve as implicit, temporally defined, boundary events are remembered better than items that serve as non-boundary events. Our control condition which accounts for the number of items serving as boundary vs non-boundary nodes but does <em>not</em> assign a functional event boundary role do not show this difference. These findings thus suggest a shared memory representation between implicit and explicit event boundaries.</p>
+</section>
+</section>
+<section id="converging-evidence-for-better-implicit-boundary-memory-using-alternative-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="converging-evidence-for-better-implicit-boundary-memory-using-alternative-metrics">Converging evidence for better implicit boundary memory using alternative metrics</h2>
+<p><span style="color: black">We test our hypothesis using two additional metrics to evaluate the reliability of findings using the DDM model. First, we use the <strong>Balance Integration Score</strong> (BIS) as proposed in <span class="citation" data-cites="liesefeld2015fast">Liesefeld, Fu, and Zimmer (<a href="#ref-liesefeld2015fast" role="doc-biblioref">2015</a>)</span> to test whether boundary nodes in structured graph conditions are better remembered while accounting for speed-accuracy trade-offs and providing for equal weighting of response times and accuracy measures <span class="citation" data-cites="liesefeld2019combining">(<a href="#ref-liesefeld2019combining" role="doc-biblioref">Liesefeld and Janczyk 2019</a>)</span>. We compute BIS by first z-scoring the proportion correct and response time measures for each participant and node type and then subtracting the standardized response times from the standardized proportion correct measures. Our BIS distribution through this standard calculation was left-skewed, likely due to near-ceiling accuracies. Thus, we power-transformed our BIS scores and fit the following linear mixed effects model separately to structured and unstructured graph conditions:</span></p>
+<p><span class="math display">\[2^{BIS} ~ 0 + node type:block + accuracy\ exposure + (1|participant)\]</span></p>
+<div id="fig:bis-scores" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/bis_differences.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Difference between group-level boundary and non-boundary nodes’ posterior estimates of Balance Integration Scores. Convergent to our DDM analyses, BIS scores are higher for boundary nodes than non-boundary nodes in the structured graph condition but not in the unstructured graph condition.</figcaption>
+</figure>
+</div>
+<p><span style="color: black">In line with our findings using the DDM, as shown in Figure <a href="#fig:bis-scores" data-reference-type="ref" data-reference="fig:bis-scores">10</a>, we observe a reliably higher BIS for boundary compared to non-boundary nodes in the structured condition (node type : block M = 0.09, SD = 0.05, 95% HDI [0.01, 0.18]) and not in the unstructured condition (node type : block M = -0.04, SD = 0.04, 95% HDI [-0.12, 0.04]).</span></p>
+<p><span style="color: black">It is possible that the effects we observed are due to incidental correlations between graph and node types and between subject variability. To ensure robustness of our estimates, we also perform a bootstrap analysis where we assign ‘boundary’ and ‘non-boundary’ labels to 100 random samples of the 15 nodes for each participant and re-fit our models for both structured and unstructured graph conditions (Figure <a href="#fig:boot-analysis" data-reference-type="ref" data-reference="fig:boot-analysis">11</a>). Specifically, we randomly assigned boundary or non-boundary labels to our stimuli 100 times. We fit the same DDM parametrization to these 100 random assignments and extracted the posterior drift rate estimates for memory responses to these boundary and non-boundary labeled items. We then subtracted these drift posterior estimates for non-boundary stimuli from those of the boundary stimuli (similar to analyses presented in Figure <a href="#fig:ddm-results" data-reference-type="ref" data-reference="fig:ddm-results">9</a>). We then computed the mean of these difference distributions to build a bootstrapped empirical null distribution and computed the proportion (out of 100) of both empirical null distributions (from structured and unstructured conditions) that are higher than the mean difference for our true boundary-non-boundary assignment conditions.</span></p>
+<div id="fig:boot-analysis" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/bootstrapping_figure.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Results from a bootstrap analysis. True estimated difference (dotted line) lies reliably above the empirical null distribution generated by shuffling the non-boundary/boundary labels in the participants who went through the unstructured (blue) and structured (orange) exposure conditions.</figcaption>
+</figure>
+</div>
+<p><span style="color: black">As seen in Figure <a href="#fig:boot-analysis" data-reference-type="ref" data-reference="fig:boot-analysis">11</a>, we find that only 6% of structured empirical null distribution samples are higher than the true estimated mean and 13% of unstructured empirical null distribution samples are higher than the true estimated mean, providing further support to our modeling results, indicating that boundary nodes in structured graphs have a higher drift rate during the later recognition test than non-boundary nodes. This analysis suggests that the probability of observing the node type group level effects in our results by chance is relatively small.</span></p>
+</section>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<p>The primary goal of this work was to test whether findings in the explicitly operationalized event boundary literature replicate when boundaries are operationalized implicitly, through temporal statistics <em>without</em> perceptual context changes. Shared properties between these two operationalizations of event boundaries imply shared representations in memory, thereby providing a framework for future research to study shared algorithmic processes that lead to the formation of event boundaries. In particular, we test whether, similar to findings in the explicitly operationalized event boundary literature (where boundary events are perceptually different from the ongoing stream of events), participants remember implicitly operationalized boundary events (where boundary events are not perceptually different but serve as a gateway to a different cluster defined by temporal co-occurrences). We use the drift-diffusion model on our empirical results to show that boundary nodes are remembered better than non-boundary nodes even when boundaries are not operationalized explicitly.</p>
+<p>In this work, we use the DDM to measure differences in memory strength between boundary and non-boundary nodes. DDM is one (highly successful) model of memory that incorporates response time distributions along with choices. Several other sequential sampling models can be similarly used in this formulation to provide evidence of better memory strength for boundary items. Most notably, a direct extension of the Generalized Context model for recognition memory is the Exemplar Based Random Walk (EBRW) model <span class="citation" data-cites="nosofsky2011short">(<a href="#ref-nosofsky2011short" role="doc-biblioref">Nosofsky et al. 2011</a>)</span> which assumes that evidence towards old/new recognition choice options is accumulated in proportion to background activation of all items in memory may be extended to incorporate non-boundary items as background activation with boundary items providing an additional boost in its evidence accumulation process. Recent extensions of the DDM also incorporate reinforcement learning-driven modulation of drift rates which may provide a dynamic characterization of memory processes during learning <span class="citation" data-cites="pedersen2017drift">(<a href="#ref-pedersen2017drift" role="doc-biblioref">Pedersen, Frank, and Biele 2017</a>)</span>. Further work is needed to understand how extensions to DDM and other choice reaction time models can be extended to incorporate the effects of temporal order.</p>
+<p>The effect of structured exposure on identifying new stimuli is intriguing (Tables <a href="#tab:ddm-params-structured" data-reference-type="ref" data-reference="tab:ddm-params-structured">4</a>, and <a href="#tab:ddm-params-unstructured" data-reference-type="ref" data-reference="tab:ddm-params-unstructured">5</a>). The drift rate posteriors for new items for participants in the unstructured exposure condition are faster (more negative) than for participants in the structured exposure condition. Likely, the interleaved presentation in unstructured exposure generally provides for a richer representation of each exemplar in memory especially in comparison to the non-boundary items in the structured exposure condition, thereby allowing for easier discrimination with new items at test. A similar benefit of interleaved presentation has been observed in categorization tasks <span class="citation" data-cites="carvalho2014putting carvalho2017sequence">(<a href="#ref-carvalho2014putting" role="doc-biblioref">Carvalho and Goldstone 2014</a>, <a href="#ref-carvalho2017sequence" role="doc-biblioref">2017</a>)</span>. Nevertheless, future work should aim to explain the cognitive processes that lead to better recognition of new items in the absence of structured learning.</p>
+<p><span style="color: black">We use the DDM to model participant behavior during the recognition test phase and particularly rely on drift rates to identify the differences in memory of items associated with boundary and non-boundary nodes. The DDM models the psychological process of sequentially sampling evidence towards the ‘old’ or ‘new’ boundary after having viewed the stimulus. The drift rate parameter of the DDM controls the speed at which this evidence is accumulated towards either boundary of the DDM, with a higher drift rate implying greater speed, thus enabling faster recognition for old items along with higher hit rates (Figure S2). In the context of our experiment, the higher drift rate for boundary nodes, relative to non-boundary nodes, implies that boundary items are more readily available in memory and are therefore recognized faster. In particular, even when stimuli are meaningless and non-verbalizable, if they functionally serve as <em>implicit</em> bottlenecks in the ongoing temporal experience, they show properties of typical explicitly operationalized event boundaries. Our findings thus add to prior work indicating the boundary items serve a special role in the structuring of memory and its recall by serving as access points of memory retrievalbott <span class="citation" data-cites="michelmann2023evidence heusser2018perceptual karuza2019human">(<a href="#ref-michelmann2023evidence" role="doc-biblioref">Michelmann, Hasson, and Norman 2023</a>; <a href="#ref-heusser2018perceptual" role="doc-biblioref">Heusser et al. 2018</a>; <a href="#ref-karuza2019human" role="doc-biblioref">Karuza, Kahn, and Bassett 2019</a>)</span>.</span></p>
+<p><span style="color: black">The addition of prior exposure accuracy in our modeling may introduce unwanted effects. For example, prior accuracy may be related to node type. Furthermore, since our items were randomly generated, it is possible that some items were verbalizable, enabling participants to remember them better. It is also possible that the random walk during exposure led to greater exposure to some items than others. Additionally, it is also possible that the randomized presented rotation led to participants spending more time studying some items since they were harder to mentally rotate. Thus, if participants remembered an item better during exposure as a result of any of the above-stated reasons, we expect them to have better recognition memory for those items regardless of their functional role in the temporal graph. Since our goal was to identify whether boundary drift rates were higher <em>beyond</em> the specific visual properties of the studied items and experimental variability, by using exposure accuracy as a covariate, we attempted to account for these effects. Nevertheless, exposure accuracy for each stimulus is a crude metric to account for these effects, and future research could better account for the effects of exposure by explicitly controlling the visual properties of the stimuli.</span></p>
+<p>Our results also show an unexpected but interesting effect – recognition performance (for both old and new items) is generally better for participants in the unstructured graph group than those in the structured graph group. <span style="color: black">We speculate that the interleaved nature of exposure presented to the unstructured graph participants may have led to a better overall memory of studied polygons. Such an interleaving benefit has been observed in prior work on the spacing effect <span class="citation" data-cites="carvalho2017sequence vlach2008spacing wang2020benefit">(<a href="#ref-carvalho2017sequence" role="doc-biblioref">Carvalho and Goldstone 2017</a>; <a href="#ref-vlach2008spacing" role="doc-biblioref">Vlach, Sandhofer, and Kornell 2008</a>; <a href="#ref-wang2020benefit" role="doc-biblioref">Wang et al. 2020</a>)</span>. Furthermore, it is also possible that the difference in lag between repeated presentation of our stimuli and the randomness of the rotation judgment task has contributed to this difference. The random walk nature through a modular graph necessitates that if a module switch occurs after presentation of a stimulus, repeated presentation of that stimulus would occur with a larger lag in the structured condition. This lag may contribute to relatively lower accuracy exposure, as 10 of 15 stimuli at any given time will be presented at a larger lag in this condition (Figure S5). Furthermore, for stimuli presented at smaller lags (i.e., when the random walk traverses within a module), the randomization of the presented rotation may induce an additional bias leading to lower accuracy at exposure.</span> While we account for potential benefits by including accuracy at exposure as a covariate, future experimental design equalizing recognition performance across exposure types should provide stronger evidence towards node-type advantage due to structured graph exposure.</p>
+<p>Our experimental work provides evidence that implicit event boundaries, similar to explicit event boundaries, play a special role in organizing implicit memory. However, it is unclear what temporal order learning-driven algorithmic and neural mechanisms may underlie this benefit. Following the prediction error-based account of boundary formation in event segmentation theory, and the implicit nature of our task, it is likely that an algorithmic mechanism that accounts for the establishment of temporal context such as the Temporal Context Model <span class="citation" data-cites="howard2005temporal polyn2009context">(<a href="#ref-howard2005temporal" role="doc-biblioref">Howard et al. 2005</a>; <a href="#ref-polyn2009context" role="doc-biblioref">Polyn, Norman, and Kahana 2009</a>)</span> or a predictive-representations based Successor Representation <span class="citation" data-cites="gershman2012successor dayan1993improving momennejad2017successor gershman2018successor">(<a href="#ref-gershman2012successor" role="doc-biblioref">Gershman et al. 2012</a>; <a href="#ref-dayan1993improving" role="doc-biblioref">Dayan 1993</a>; <a href="#ref-momennejad2017successor" role="doc-biblioref">Momennejad et al. 2017</a>; <a href="#ref-gershman2018successor" role="doc-biblioref">Gershman 2018</a>)</span> may be used to characterize our findings. Neurally, the complementary learning systems (CLS) theorized to be involved in statistical learning in the hippocampus may provide an indication of where differences in boundary vs non-boundary items are represented in the brain <span class="citation" data-cites="schapiro2015statistical schapiro2013neural o2014complementary schapiro2017complementary">(<a href="#ref-schapiro2015statistical" role="doc-biblioref">Schapiro and Turk-Browne 2015</a>; <a href="#ref-schapiro2013neural" role="doc-biblioref">Schapiro et al. 2013</a>, <a href="#ref-schapiro2017complementary" role="doc-biblioref">2017</a>; <a href="#ref-o2014complementary" role="doc-biblioref">O’Reilly et al. 2014</a>)</span>. Future work should aim to address the underlying algorithmic and neural representations that jointly explain the effects of implicit environmental statistical regularities on memory representations.</p>
+<p>Finally, in our experiment, we use a specific graph structure and a random walk through it to investigate possible shared properties of implicit and explicit event boundaries. Future work should aim to generalize this effect by also attempt to identify if altering the properties of various graph topologies can lead to different experimental observations.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Findings of our empirical study presented in this article show that, similar to explicitly operationalized boundaries, implicitly operationalized boundary events are remembered better than non-boundary events. Our work provides an indication that the underlying mechanisms that learn and represent event boundaries may rely not just on perceptual, but also on temporal regularities, thereby leading to structured organization of memory hinged at event boundaries.</p>
+</section>
+<section id="acknowledgements" class="level1">
+<h1>Acknowledgements</h1>
+<p>We would like to thank all RDCL and DMM lab research assistants who helped collect data for this article.</p>
+</section>
+<section id="data-availibility-statement" class="level1">
+<h1>Data Availibility Statement</h1>
+<p>Code and data used for this manuscript are made openly available in the GitHub repository: <a href="https://github.com/tejas-savalia/implicit-boundary-memory" class="uri">https://github.com/tejas-savalia/implicit-boundary-memory</a>.</p>
+</section>
+<section id="funding" class="level1">
+<h1>Funding</h1>
+<p>No funding was received for work presented in this article.</p>
+<div id="tab:exp2-rt-accuracy-stats">
+<table class="caption-top table">
+<caption>Continued...</caption>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align: center;">accuracy</td>
+<td></td>
+<td style="text-align: center;">rt</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align: center;">mean</td>
+<td>std</td>
+<td style="text-align: center;">mean</td>
+<td>std</td>
+</tr>
+<tr class="odd">
+<td>phase</td>
+<td>block</td>
+<td>stimulus type</td>
+<td>graph type</td>
+<td style="text-align: center;"></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>0</td>
+<td>boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.683</td>
+<td>0.465</td>
+<td style="text-align: center;">1.644</td>
+<td>1.911</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.739</td>
+<td>0.439</td>
+<td style="text-align: center;">1.710</td>
+<td>1.732</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>non-boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.669</td>
+<td>0.471</td>
+<td style="text-align: center;">1.619</td>
+<td>1.728</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.728</td>
+<td>0.445</td>
+<td style="text-align: center;">1.713</td>
+<td>1.689</td>
+</tr>
+<tr class="even">
+<td>2-8</td>
+<td>1</td>
+<td>boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.735</td>
+<td>0.441</td>
+<td style="text-align: center;">1.244</td>
+<td>1.322</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.796</td>
+<td>0.403</td>
+<td style="text-align: center;">1.283</td>
+<td>1.243</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>non-boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.739</td>
+<td>0.439</td>
+<td style="text-align: center;">1.250</td>
+<td>1.343</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.790</td>
+<td>0.408</td>
+<td style="text-align: center;">1.263</td>
+<td>1.217</td>
+</tr>
+<tr class="even">
+<td>2-8</td>
+<td>2</td>
+<td>boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.757</td>
+<td>0.429</td>
+<td style="text-align: center;">1.168</td>
+<td>1.657</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.843</td>
+<td>0.363</td>
+<td style="text-align: center;">1.111</td>
+<td>1.334</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>non-boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.765</td>
+<td>0.424</td>
+<td style="text-align: center;">1.192</td>
+<td>1.656</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.838</td>
+<td>0.369</td>
+<td style="text-align: center;">1.085</td>
+<td>1.546</td>
+</tr>
+<tr class="even">
+<td>1-8</td>
+<td>0</td>
+<td>boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.796</td>
+<td>0.404</td>
+<td style="text-align: center;">1.681</td>
+<td>1.490</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.878</td>
+<td>0.328</td>
+<td style="text-align: center;">1.805</td>
+<td>1.712</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>new</td>
+<td>structured</td>
+<td style="text-align: center;">0.721</td>
+<td>0.449</td>
+<td style="text-align: center;">1.899</td>
+<td>1.569</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.782</td>
+<td>0.413</td>
+<td style="text-align: center;">1.770</td>
+<td>1.666</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>non-boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.782</td>
+<td>0.414</td>
+<td style="text-align: center;">1.715</td>
+<td>1.602</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.904</td>
+<td>0.296</td>
+<td style="text-align: center;">1.570</td>
+<td>1.291</td>
+</tr>
+<tr class="even">
+<td>2-8</td>
+<td>1</td>
+<td>boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.833</td>
+<td>0.374</td>
+<td style="text-align: center;">1.564</td>
+<td>2.573</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.911</td>
+<td>0.285</td>
+<td style="text-align: center;">1.212</td>
+<td>0.959</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>new</td>
+<td>structured</td>
+<td style="text-align: center;">0.800</td>
+<td>0.400</td>
+<td style="text-align: center;">1.420</td>
+<td>1.486</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.873</td>
+<td>0.333</td>
+<td style="text-align: center;">1.338</td>
+<td>1.056</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>non-boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.860</td>
+<td>0.348</td>
+<td style="text-align: center;">1.618</td>
+<td>1.812</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.874</td>
+<td>0.332</td>
+<td style="text-align: center;">1.139</td>
+<td>0.709</td>
+</tr>
+<tr class="even">
+<td>2-8</td>
+<td>2</td>
+<td>boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.907</td>
+<td>0.291</td>
+<td style="text-align: center;">1.196</td>
+<td>1.194</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.900</td>
+<td>0.301</td>
+<td style="text-align: center;">1.075</td>
+<td>0.694</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>new</td>
+<td>structured</td>
+<td style="text-align: center;">0.751</td>
+<td>0.433</td>
+<td style="text-align: center;">1.454</td>
+<td>2.322</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.844</td>
+<td>0.363</td>
+<td style="text-align: center;">1.292</td>
+<td>1.127</td>
+</tr>
+<tr class="even">
+<td>3-8</td>
+<td></td>
+<td>non-boundary</td>
+<td>structured</td>
+<td style="text-align: center;">0.893</td>
+<td>0.310</td>
+<td style="text-align: center;">1.370</td>
+<td>1.869</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>unstructured</td>
+<td style="text-align: center;">0.926</td>
+<td>0.262</td>
+<td style="text-align: center;">1.045</td>
+<td>0.729</td>
+</tr>
+<tr class="even">
+<td>1-8</td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tab:exposure_rts">
+<table class="caption-top table">
+<caption>Effects of trials, node type, and experimental graph type on participant response times during exposure phase. Effects in square brackets are labeled relative to the common intercept.</caption>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align: center;">HDI</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>mean</td>
+<td>sd</td>
+<td style="text-align: center;">2.5%</td>
+<td>97.5%</td>
+</tr>
+<tr class="odd">
+<td>Intercept</td>
+<td>1.13</td>
+<td>0.11</td>
+<td style="text-align: center;">0.91</td>
+<td>1.31</td>
+</tr>
+<tr class="even">
+<td>graph type[unstructured]</td>
+<td>0.05</td>
+<td>0.15</td>
+<td style="text-align: center;">-0.24</td>
+<td>0.33</td>
+</tr>
+<tr class="odd">
+<td>log trials</td>
+<td>-0.21</td>
+<td>0.01</td>
+<td style="text-align: center;">-0.22</td>
+<td>-0.19</td>
+</tr>
+<tr class="even">
+<td>log trials:graph type[unstructured]</td>
+<td>0.00</td>
+<td>0.01</td>
+<td style="text-align: center;">-0.02</td>
+<td>0.02</td>
+</tr>
+<tr class="odd">
+<td>log trials:node type[nonboundary]</td>
+<td>0.01</td>
+<td>0.01</td>
+<td style="text-align: center;">-0.01</td>
+<td>0.03</td>
+</tr>
+<tr class="even">
+<td>log trials:node type:graph type[nonboundary, unstructured]</td>
+<td>-0.02</td>
+<td>0.01</td>
+<td style="text-align: center;">-0.05</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td>node type[nonboundary]</td>
+<td>-0.06</td>
+<td>0.05</td>
+<td style="text-align: center;">-0.16</td>
+<td>0.05</td>
+</tr>
+<tr class="even">
+<td>node type:graph type[nonboundary, unstructured]</td>
+<td>0.12</td>
+<td>0.07</td>
+<td style="text-align: center;">-0.02</td>
+<td>0.25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tab:exposure_accuracy">
+<table class="caption-top table">
+<caption>Effects of trials, node type, and experimental graph type on participant accuracy during exposure phase. Effects in square brackets are labeled relative to the common intercept.</caption>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align: center;">HDI</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>mean</td>
+<td>sd</td>
+<td style="text-align: center;">2.5%</td>
+<td>97.5%</td>
+</tr>
+<tr class="odd">
+<td>Intercept</td>
+<td>0.46</td>
+<td>0.24</td>
+<td style="text-align: center;">-0.02</td>
+<td>0.91</td>
+</tr>
+<tr class="even">
+<td>graph type[unstructured]</td>
+<td>-0.38</td>
+<td>0.34</td>
+<td style="text-align: center;">-0.97</td>
+<td>0.35</td>
+</tr>
+<tr class="odd">
+<td>graph type:node type[unstructured, nonboundary]</td>
+<td>0.34</td>
+<td>0.25</td>
+<td style="text-align: center;">-0.15</td>
+<td>0.83</td>
+</tr>
+<tr class="even">
+<td>log trials</td>
+<td>0.13</td>
+<td>0.02</td>
+<td style="text-align: center;">0.08</td>
+<td>0.17</td>
+</tr>
+<tr class="odd">
+<td>log trials:graph type[unstructured]</td>
+<td>0.14</td>
+<td>0.04</td>
+<td style="text-align: center;">0.07</td>
+<td>0.20</td>
+</tr>
+<tr class="even">
+<td>log trials:graph type:node type[unstructured, nonboundary]</td>
+<td>-0.06</td>
+<td>0.04</td>
+<td style="text-align: center;">-0.15</td>
+<td>0.02</td>
+</tr>
+<tr class="odd">
+<td>log trials:node type[nonboundary]</td>
+<td>0.06</td>
+<td>0.03</td>
+<td style="text-align: center;">0.00</td>
+<td>0.12</td>
+</tr>
+<tr class="even">
+<td>node type[nonboundary]</td>
+<td>-0.36</td>
+<td>0.18</td>
+<td style="text-align: center;">-0.71</td>
+<td>-0.01</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tab:ddm-params-structured">
+<table class="caption-top table">
+<caption>Drift diffusion model parameters for the structured graph type. Effects in square brackets are labeled relative to the common intercept (block 0 for the boundary parameter). Drift rate <em>v</em> is estimated for each node type while accounting for accuracy at exposure (in parameter ‘v accuracy exposure’.</caption>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align: center;">HDI</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>mean</td>
+<td>sd</td>
+<td style="text-align: center;">2.5%</td>
+<td>97.5%</td>
+</tr>
+<tr class="odd">
+<td>z block[1]</td>
+<td>-0.03</td>
+<td>0.01</td>
+<td style="text-align: center;">-0.06</td>
+<td>-0.01</td>
+</tr>
+<tr class="even">
+<td>z block[2]</td>
+<td>-0.01</td>
+<td>0.01</td>
+<td style="text-align: center;">-0.03</td>
+<td>0.02</td>
+</tr>
+<tr class="odd">
+<td>a block[1]</td>
+<td>-0.18</td>
+<td>0.03</td>
+<td style="text-align: center;">-0.23</td>
+<td>-0.13</td>
+</tr>
+<tr class="even">
+<td>a block[2]</td>
+<td>-0.19</td>
+<td>0.02</td>
+<td style="text-align: center;">-0.23</td>
+<td>-0.14</td>
+</tr>
+<tr class="odd">
+<td>v accuracy exposure</td>
+<td>0.57</td>
+<td>0.14</td>
+<td style="text-align: center;">0.31</td>
+<td>0.85</td>
+</tr>
+<tr class="even">
+<td>v boundary</td>
+<td>0.63</td>
+<td>0.12</td>
+<td style="text-align: center;">0.42</td>
+<td>0.88</td>
+</tr>
+<tr class="odd">
+<td>v new</td>
+<td>-0.84</td>
+<td>0.17</td>
+<td style="text-align: center;">-1.18</td>
+<td>-0.52</td>
+</tr>
+<tr class="even">
+<td>v non-boundary</td>
+<td>0.49</td>
+<td>0.12</td>
+<td style="text-align: center;">0.27</td>
+<td>0.72</td>
+</tr>
+<tr class="odd">
+<td>z Intercept</td>
+<td>0.52</td>
+<td>0.01</td>
+<td style="text-align: center;">0.49</td>
+<td>0.54</td>
+</tr>
+<tr class="even">
+<td>a Intercept</td>
+<td>1.20</td>
+<td>0.04</td>
+<td style="text-align: center;">1.11</td>
+<td>1.28</td>
+</tr>
+<tr class="odd">
+<td>t Intercept</td>
+<td>0.44</td>
+<td>0.03</td>
+<td style="text-align: center;">0.38</td>
+<td>0.49</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tab:ddm-params-unstructured">
+<table class="caption-top table">
+<caption>Drift diffusion model parameters for the unstructured graph type. Effects in square brackets are labeled relative to the common intercept (block 0 for the boundary parameter). Drift rate <em>v</em> is estimated for each node type while accounting for accuracy at exposure (in parameter ‘v accuracy exposure’.</caption>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align: center;">HDI</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>mean</td>
+<td>sd</td>
+<td style="text-align: center;">2.5%</td>
+<td>97.5%</td>
+</tr>
+<tr class="odd">
+<td>z block[1]</td>
+<td>-0.05</td>
+<td>0.01</td>
+<td style="text-align: center;">-0.07</td>
+<td>-0.02</td>
+</tr>
+<tr class="even">
+<td>z block[2]</td>
+<td>-0.03</td>
+<td>0.01</td>
+<td style="text-align: center;">-0.06</td>
+<td>-0.01</td>
+</tr>
+<tr class="odd">
+<td>a block[1]</td>
+<td>-0.17</td>
+<td>0.02</td>
+<td style="text-align: center;">-0.21</td>
+<td>-0.13</td>
+</tr>
+<tr class="even">
+<td>a block[2]</td>
+<td>-0.24</td>
+<td>0.02</td>
+<td style="text-align: center;">-0.29</td>
+<td>-0.20</td>
+</tr>
+<tr class="odd">
+<td>v accuracy exposure</td>
+<td>0.51</td>
+<td>0.14</td>
+<td style="text-align: center;">0.25</td>
+<td>0.80</td>
+</tr>
+<tr class="even">
+<td>v boundary</td>
+<td>0.85</td>
+<td>0.12</td>
+<td style="text-align: center;">0.62</td>
+<td>1.11</td>
+</tr>
+<tr class="odd">
+<td>v new</td>
+<td>-1.19</td>
+<td>0.16</td>
+<td style="text-align: center;">-1.50</td>
+<td>-0.89</td>
+</tr>
+<tr class="even">
+<td>v non-boundary</td>
+<td>0.85</td>
+<td>0.13</td>
+<td style="text-align: center;">0.61</td>
+<td>1.10</td>
+</tr>
+<tr class="odd">
+<td>z Intercept</td>
+<td>0.53</td>
+<td>0.01</td>
+<td style="text-align: center;">0.50</td>
+<td>0.56</td>
+</tr>
+<tr class="even">
+<td>a Intercept</td>
+<td>1.14</td>
+<td>0.04</td>
+<td style="text-align: center;">1.07</td>
+<td>1.22</td>
+</tr>
+<tr class="odd">
+<td>t Intercept</td>
+<td>0.48</td>
+<td>0.02</td>
+<td style="text-align: center;">0.44</td>
+<td>0.52</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tab:model-compare-struct">
+<table class="caption-top table">
+<caption>Results of model comparison between a model with drift rate varying by node type with a model with drift rates independent of node types for participants in the structured graph type. Including node type improves model fits as measured by expected log pointwise predictive density on leave-one-out cross-validation set <span class="citation" data-cites="vehtari2017practical">(<a href="#ref-vehtari2017practical" role="doc-biblioref">Vehtari, Gelman, and Gabry 2017</a>)</span>.</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">rank</th>
+<th style="text-align: center;">elpd loo</th>
+<th style="text-align: center;">p loo</th>
+<th style="text-align: center;">weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>v<span class="math inline">\(\sim\)</span>nodetype, z<span class="math inline">\(\sim\)</span>block, a<span class="math inline">\(\sim\)</span>block</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-3322.44</td>
+<td style="text-align: center;">178.28</td>
+<td style="text-align: center;">0.44</td>
+</tr>
+<tr class="even">
+<td>v<span class="math inline">\(\sim\)</span>nodetype+block, z<span class="math inline">\(\sim\)</span>block, a<span class="math inline">\(\sim\)</span>block</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">-3323.68</td>
+<td style="text-align: center;">183.07</td>
+<td style="text-align: center;">0.42</td>
+</tr>
+<tr class="odd">
+<td>v<span class="math inline">\(\sim\)</span>nodetype, a<span class="math inline">\(\sim\)</span>block</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">-3325.19</td>
+<td style="text-align: center;">177.83</td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="even">
+<td>v<span class="math inline">\(\sim\)</span>nodetype</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">-3357.94</td>
+<td style="text-align: center;">171.50</td>
+<td style="text-align: center;">0.12</td>
+</tr>
+<tr class="odd">
+<td>a<span class="math inline">\(\sim\)</span>block</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">-3947.96</td>
+<td style="text-align: center;">150.93</td>
+<td style="text-align: center;">0.02</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tab:model-compare-unstruct">
+<table class="caption-top table">
+<caption>Results of model comparison between a model with drift rate varying by node type with a model with drift rates independent of node types for participants in the unstructured graph type. Including node type improves model fits as measured by expected log pointwise predictive density on leave-one-out cross-validation set <span class="citation" data-cites="vehtari2017practical">(<a href="#ref-vehtari2017practical" role="doc-biblioref">Vehtari, Gelman, and Gabry 2017</a>)</span>.</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">rank</th>
+<th style="text-align: center;">elpd loo</th>
+<th style="text-align: center;">p loo</th>
+<th style="text-align: center;">weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>v<span class="math inline">\(\sim\)</span>nodetype, z<span class="math inline">\(\sim\)</span>block, a<span class="math inline">\(\sim\)</span>block</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-2810.24</td>
+<td style="text-align: center;">157.96</td>
+<td style="text-align: center;">0.95</td>
+</tr>
+<tr class="even">
+<td>v<span class="math inline">\(\sim\)</span>nodetype+block, z<span class="math inline">\(\sim\)</span>block, a<span class="math inline">\(\sim\)</span>block</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">-2811.99</td>
+<td style="text-align: center;">159.81</td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="odd">
+<td>v<span class="math inline">\(\sim\)</span>nodetype, a<span class="math inline">\(\sim\)</span>block</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">-2816.23</td>
+<td style="text-align: center;">156.42</td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="even">
+<td>v<span class="math inline">\(\sim\)</span>nodetype</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">-2870.71</td>
+<td style="text-align: center;">147.43</td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td>a<span class="math inline">\(\sim\)</span>block</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">-3747.71</td>
+<td style="text-align: center;">108.54</td>
+<td style="text-align: center;">0.01</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="fig:ppc-structured" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/structured_posterior_predictive.png" class="img-fluid figure-img"></p>
+<figcaption>DDM posterior predictive distributions overlayed on the actual data for participants exposed to structured graphs, separated by block and node type.</figcaption>
+</figure>
+</div>
+<div id="fig:ppc-unstructured" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/unstructured_posterior_predictive.png" class="img-fluid figure-img"></p>
+<figcaption>DDM posterior predictive distributions overlayed on the actual data for participants exposed to unstructured graphs, separated by block and node type.</figcaption>
+</figure>
+</div>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-baldassano2017discovering" class="csl-entry" role="listitem">
+Baldassano, Christopher, Janice Chen, Asieh Zadbood, Jonathan W Pillow, Uri Hasson, and Kenneth A Norman. 2017. <span>“Discovering Event Structure in Continuous Narrative Perception and Memory.”</span> <em>Neuron</em> 95 (3): 709–21.
+</div>
+<div id="ref-baldwin2008segmenting" class="csl-entry" role="listitem">
+Baldwin, Dare, Annika Andersson, Jenny Saffran, and Meredith Meyer. 2008. <span>“Segmenting Dynamic Human Action via Statistical Structure.”</span> <em>Cognition</em> 106 (3): 1382–1407.
+</div>
+<div id="ref-bera2021motor" class="csl-entry" role="listitem">
+Bera, Krishn, Anuj Shukla, and Raju S Bapi. 2021. <span>“Motor Chunking in Internally Guided Sequencing.”</span> <em>Brain Sciences</em> 11 (3): 292.
+</div>
+<div id="ref-botvinick2012hierarchical" class="csl-entry" role="listitem">
+Botvinick, Matthew Michael. 2012. <span>“Hierarchical Reinforcement Learning and Decision Making.”</span> <em>Current Opinion in Neurobiology</em> 22 (6): 956–62.
+</div>
+<div id="ref-brunec2018boundaries" class="csl-entry" role="listitem">
+Brunec, Iva K, Morris Moscovitch, and Morgan D Barense. 2018. <span>“Boundaries Shape Cognitive Representations of Spaces and Events.”</span> <em>Trends in Cognitive Sciences</em> 22 (7): 637–50.
+</div>
+<div id="ref-capretto2022bambi" class="csl-entry" role="listitem">
+Capretto, Tomás, Camen Piho, Ravin Kumar, Jacob Westfall, Tal Yarkoni, and Osvaldo A Martin. 2022. <span>“Bambi: A Simple Interface for Fitting Bayesian Linear Models in Python.”</span> <em>Journal of Statistical Software</em> 103: 1–29.
+</div>
+<div id="ref-carvalho2014putting" class="csl-entry" role="listitem">
+Carvalho, Paulo F, and Robert L Goldstone. 2014. <span>“Putting Category Learning in Order: Category Structure and Temporal Arrangement Affect the Benefit of Interleaved over Blocked Study.”</span> <em>Memory &amp; Cognition</em> 42: 481–95.
+</div>
+<div id="ref-carvalho2017sequence" class="csl-entry" role="listitem">
+———. 2017. <span>“The Sequence of Study Changes What Information Is Attended to, Encoded, and Remembered During Category Learning.”</span> <em>Journal of Experimental Psychology: Learning, Memory, and Cognition</em> 43 (11): 1699.
+</div>
+<div id="ref-clewett2019transcending" class="csl-entry" role="listitem">
+Clewett, David, Sarah DuBrow, and Lila Davachi. 2019. <span>“Transcending Time in the Brain: How Event Memories Are Constructed from Experience.”</span> <em>Hippocampus</em> 29 (3): 162–83.
+</div>
+<div id="ref-dayan1993improving" class="csl-entry" role="listitem">
+Dayan, Peter. 1993. <span>“Improving Generalization for Temporal Difference Learning: The Successor Representation.”</span> <em>Neural Computation</em> 5 (4): 613–24.
+</div>
+<div id="ref-dezfouli2012habits" class="csl-entry" role="listitem">
+Dezfouli, Amir, and Bernard W Balleine. 2012. <span>“Habits, Action Sequences and Reinforcement Learning.”</span> <em>European Journal of Neuroscience</em> 35 (7): 1036–51.
+</div>
+<div id="ref-dezfouli2014habits" class="csl-entry" role="listitem">
+Dezfouli, Amir, Nura W Lingawi, and Bernard W Balleine. 2014. <span>“Habits as Action Sequences: Hierarchical Action Control and Changes in Outcome Value.”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 369 (1655): 20130482.
+</div>
+<div id="ref-dolan2013goals" class="csl-entry" role="listitem">
+Dolan, Ray J, and Peter Dayan. 2013. <span>“Goals and Habits in the Brain.”</span> <em>Neuron</em> 80 (2): 312–25.
+</div>
+<div id="ref-dubrow2013influence" class="csl-entry" role="listitem">
+DuBrow, Sarah, and Lila Davachi. 2013. <span>“The Influence of Context Boundaries on Memory for the Sequential Order of Events.”</span> <em>Journal of Experimental Psychology: General</em> 142 (4): 1277.
+</div>
+<div id="ref-ezzyat2014similarity" class="csl-entry" role="listitem">
+Ezzyat, Youssef, and Lila Davachi. 2014. <span>“Similarity Breeds Proximity: Pattern Similarity Within and Across Contexts Is Related to Later Mnemonic Judgments of Temporal Proximity.”</span> <em>Neuron</em> 81 (5): 1179–89.
+</div>
+<div id="ref-fenglerhssm" class="csl-entry" role="listitem">
+Fengler, A, P Xu, K Bera, A Omar, and MJ Frank. n.d. <span>“HSSM: A Generalized Toolbox for Hierarchical Bayesian Estimation of Computational Models in Cognitive Neuroscience.”</span> <em>Fengler, A., Xu, P., Bera, K., Omar, A., Frank, MJ (in Preparation)</em>.
+</div>
+<div id="ref-gabay2015incidental" class="csl-entry" role="listitem">
+Gabay, Yafit, Frederic K Dick, Jason D Zevin, and Lori L Holt. 2015. <span>“Incidental Auditory Category Learning.”</span> <em>Journal of Experimental Psychology: Human Perception and Performance</em> 41 (4): 1124.
+</div>
+<div id="ref-gershman2018successor" class="csl-entry" role="listitem">
+Gershman, Samuel J. 2018. <span>“The Successor Representation: Its Computational Logic and Neural Substrates.”</span> <em>Journal of Neuroscience</em> 38 (33): 7193–7200.
+</div>
+<div id="ref-gershman2012successor" class="csl-entry" role="listitem">
+Gershman, Samuel J, Christopher D Moore, Michael T Todd, Kenneth A Norman, and Per B Sederberg. 2012. <span>“The Successor Representation and Temporal Context.”</span> <em>Neural Computation</em> 24 (6): 1553–68.
+</div>
+<div id="ref-gershman2010learning" class="csl-entry" role="listitem">
+Gershman, Samuel J, and Yael Niv. 2010. <span>“Learning Latent Structure: Carving Nature at Its Joints.”</span> <em>Current Opinion in Neurobiology</em> 20 (2): 251–56.
+</div>
+<div id="ref-hahamy2023human" class="csl-entry" role="listitem">
+Hahamy, Avital, Haim Dubossarsky, and Timothy EJ Behrens. 2023. <span>“The Human Brain Reactivates Context-Specific Past Information at Event Boundaries of Naturalistic Experiences.”</span> <em>Nature Neuroscience</em> 26 (6): 1080–89.
+</div>
+<div id="ref-heusser2018perceptual" class="csl-entry" role="listitem">
+Heusser, Andrew C, Youssef Ezzyat, Ilana Shiff, and Lila Davachi. 2018. <span>“Perceptual Boundaries Cause Mnemonic Trade-Offs Between Local Boundary Processing and Across-Trial Associative Binding.”</span> <em>Journal of Experimental Psychology: Learning, Memory, and Cognition</em> 44 (7): 1075.
+</div>
+<div id="ref-howard2005temporal" class="csl-entry" role="listitem">
+Howard, Marc W, Mrigankka S Fotedar, Aditya V Datey, and Michael E Hasselmo. 2005. <span>“The Temporal Context Model in Spatial Navigation and Relational Learning: Toward a Common Explanation of Medial Temporal Lobe Function Across Domains.”</span> <em>Psychological Review</em> 112 (1): 75.
+</div>
+<div id="ref-kahn2018network" class="csl-entry" role="listitem">
+Kahn, Ari E, Elisabeth A Karuza, Jean M Vettel, and Danielle S Bassett. 2018. <span>“Network Constraints on Learnability of Probabilistic Motor Sequences.”</span> <em>Nature Human Behaviour</em> 2 (12): 936–47.
+</div>
+<div id="ref-karuza2022value" class="csl-entry" role="listitem">
+Karuza, Elisabeth A. 2022. <span>“The Value of Statistical Learning to Cognitive Network Science.”</span> <em>Topics in Cognitive Science</em> 14 (1): 78–92.
+</div>
+<div id="ref-karuza2019human" class="csl-entry" role="listitem">
+Karuza, Elisabeth A, Ari E Kahn, and Danielle S Bassett. 2019. <span>“Human Sensitivity to Community Structure Is Robust to Topological Variation.”</span> <em>Complexity</em> 2019 (1): 8379321.
+</div>
+<div id="ref-knowlton1992intact" class="csl-entry" role="listitem">
+Knowlton, Barbara J, Seth J Ramus, and Larry R Squire. 1992. <span>“Intact Artificial Grammar Learning in Amnesia: Dissociation of Classification Learning and Explicit Memory for Specific Instances.”</span> <em>Psychological Science</em> 3 (3): 172–79.
+</div>
+<div id="ref-kumar2019arviz" class="csl-entry" role="listitem">
+Kumar, Ravin, Colin Carroll, Ari Hartikainen, and Osvaldo Martin. 2019. <span>“ArviZ a Unified Library for Exploratory Analysis of Bayesian Models in Python.”</span> <em>Journal of Open Source Software</em> 4 (33): 1143.
+</div>
+<div id="ref-liesefeld2015fast" class="csl-entry" role="listitem">
+Liesefeld, Heinrich René, Xiaolan Fu, and Hubert D Zimmer. 2015. <span>“Fast and Careless or Careful and Slow? Apparent Holistic Processing in Mental Rotation Is Explained by Speed-Accuracy Trade-Offs.”</span> <em>Journal of Experimental Psychology: Learning, Memory, and Cognition</em> 41 (4): 1140.
+</div>
+<div id="ref-liesefeld2019combining" class="csl-entry" role="listitem">
+Liesefeld, Heinrich René, and Markus Janczyk. 2019. <span>“Combining Speed and Accuracy to Control for Speed-Accuracy Trade-Offs (?).”</span> <em>Behavior Research Methods</em> 51: 40–60.
+</div>
+<div id="ref-lositsky2016neural" class="csl-entry" role="listitem">
+Lositsky, Olga, Janice Chen, Daniel Toker, Christopher J Honey, Michael Shvartsman, Jordan L Poppenk, Uri Hasson, and Kenneth A Norman. 2016. <span>“Neural Pattern Change During Encoding of a Narrative Predicts Retrospective Duration Estimates.”</span> <em>Elife</em> 5: e16070.
+</div>
+<div id="ref-lynn2020humans" class="csl-entry" role="listitem">
+Lynn, Christopher W, and Danielle S Bassett. 2020. <span>“How Humans Learn and Represent Networks.”</span> <em>Proceedings of the National Academy of Sciences</em> 117 (47): 29407–15.
+</div>
+<div id="ref-lynn2020abstract" class="csl-entry" role="listitem">
+Lynn, Christopher W, Ari E Kahn, Nathaniel Nyema, and Danielle S Bassett. 2020. <span>“Abstract Representations of Events Arise from Mental Errors in Learning and Memory.”</span> <em>Nature Communications</em> 11 (1): 2313.
+</div>
+<div id="ref-lynn2020human" class="csl-entry" role="listitem">
+Lynn, Christopher W, Lia Papadopoulos, Ari E Kahn, and Danielle S Bassett. 2020. <span>“Human Information Processing in Complex Networks.”</span> <em>Nature Physics</em> 16 (9): 965–73.
+</div>
+<div id="ref-michelmann2023evidence" class="csl-entry" role="listitem">
+Michelmann, Sebastian, Uri Hasson, and Kenneth A Norman. 2023. <span>“Evidence That Event Boundaries Are Access Points for Memory Retrieval.”</span> <em>Psychological Science</em> 34 (3): 326–44.
+</div>
+<div id="ref-momennejad2017successor" class="csl-entry" role="listitem">
+Momennejad, Ida, Evan M Russek, Jin H Cheong, Matthew M Botvinick, Nathaniel Douglass Daw, and Samuel J Gershman. 2017. <span>“The Successor Representation in Human Reinforcement Learning.”</span> <em>Nature Human Behaviour</em> 1 (9): 680–92.
+</div>
+<div id="ref-nosofsky2011short" class="csl-entry" role="listitem">
+Nosofsky, Robert M, Daniel R Little, Christopher Donkin, and Mario Fific. 2011. <span>“Short-Term Memory Scanning Viewed as Exemplar-Based Categorization.”</span> <em>Psychological Review</em> 118 (2): 280.
+</div>
+<div id="ref-o2014complementary" class="csl-entry" role="listitem">
+O’Reilly, Randall C, Rajan Bhattacharyya, Michael D Howard, and Nicholas Ketz. 2014. <span>“Complementary Learning Systems.”</span> <em>Cognitive Science</em> 38 (6): 1229–48.
+</div>
+<div id="ref-ostlund2009evidence" class="csl-entry" role="listitem">
+Ostlund, Sean B, Neil E Winterbauer, and Bernard W Balleine. 2009. <span>“Evidence of Action Sequence Chunking in Goal-Directed Instrumental Conditioning and Its Dependence on the Dorsomedial Prefrontal Cortex.”</span> <em>Journal of Neuroscience</em> 29 (25): 8280–87.
+</div>
+<div id="ref-pedersen2017drift" class="csl-entry" role="listitem">
+Pedersen, Mads Lund, Michael J Frank, and Guido Biele. 2017. <span>“The Drift Diffusion Model as the Choice Rule in Reinforcement Learning.”</span> <em>Psychonomic Bulletin &amp; Review</em> 24: 1234–51.
+</div>
+<div id="ref-peirce2007psychopy" class="csl-entry" role="listitem">
+Peirce, Jonathan W. 2007. <span>“PsychoPy—Psychophysics Software in Python.”</span> <em>Journal of Neuroscience Methods</em> 162 (1-2): 8–13.
+</div>
+<div id="ref-polyn2009context" class="csl-entry" role="listitem">
+Polyn, Sean M, Kenneth A Norman, and Michael J Kahana. 2009. <span>“A Context Maintenance and Retrieval Model of Organizational Processes in Free Recall.”</span> <em>Psychological Review</em> 116 (1): 129.
+</div>
+<div id="ref-radvansky2017event" class="csl-entry" role="listitem">
+Radvansky, Gabriel A, and Jeffrey M Zacks. 2017. <span>“Event Boundaries in Memory and Cognition.”</span> <em>Current Opinion in Behavioral Sciences</em> 17: 133–40.
+</div>
+<div id="ref-ratcliff2022discriminating" class="csl-entry" role="listitem">
+Ratcliff, Roger, Douglas W Scharre, and Gail McKoon. 2022. <span>“Discriminating Memory Disordered Patients from Controls Using Diffusion Model Parameters from Recognition Memory.”</span> <em>Journal of Experimental Psychology: General</em> 151 (6): 1377.
+</div>
+<div id="ref-ratcliff2009modeling" class="csl-entry" role="listitem">
+Ratcliff, Roger, and Jeffrey J Starns. 2009. <span>“Modeling Confidence and Response Time in Recognition Memory.”</span> <em>Psychological Review</em> 116 (1): 59.
+</div>
+<div id="ref-ratcliff2004diffusion" class="csl-entry" role="listitem">
+Ratcliff, Roger, Anjali Thapar, and Gail McKoon. 2004. <span>“A Diffusion Model Analysis of the Effects of Aging on Recognition Memory.”</span> <em>Journal of Memory and Language</em> 50 (4): 408–24.
+</div>
+<div id="ref-romberg2010statistical" class="csl-entry" role="listitem">
+Romberg, Alexa R, and Jenny R Saffran. 2010. <span>“Statistical Learning and Language Acquisition.”</span> <em>Wiley Interdisciplinary Reviews: Cognitive Science</em> 1 (6): 906–14.
+</div>
+<div id="ref-rouhani2018dissociable" class="csl-entry" role="listitem">
+Rouhani, Nina, Kenneth A Norman, and Yael Niv. 2018. <span>“Dissociable Effects of Surprising Rewards on Learning and Memory.”</span> <em>Journal of Experimental Psychology: Learning, Memory, and Cognition</em> 44 (9): 1430.
+</div>
+<div id="ref-rouhani2020reward" class="csl-entry" role="listitem">
+Rouhani, Nina, Kenneth A Norman, Yael Niv, and Aaron M Bornstein. 2020. <span>“Reward Prediction Errors Create Event Boundaries in Memory.”</span> <em>Cognition</em> 203: 104269.
+</div>
+<div id="ref-savalia2016unified" class="csl-entry" role="listitem">
+Savalia, Tejas, Anuj Shukla, and Raju S Bapi. 2016. <span>“A Unified Theoretical Framework for Cognitive Sequencing.”</span> <em>Frontiers in Psychology</em> 7: 1821.
+</div>
+<div id="ref-schapiro2013neural" class="csl-entry" role="listitem">
+Schapiro, Anna C, Timothy T Rogers, Natalia I Cordova, Nicholas B Turk-Browne, and Matthew M Botvinick. 2013. <span>“Neural Representations of Events Arise from Temporal Community Structure.”</span> <em>Nature Neuroscience</em> 16 (4): 486–92.
+</div>
+<div id="ref-schapiro2015statistical" class="csl-entry" role="listitem">
+Schapiro, Anna C, and Nicholas Turk-Browne. 2015. <span>“Statistical Learning.”</span> <em>Brain Mapping</em> 3 (1): 501–6.
+</div>
+<div id="ref-schapiro2017complementary" class="csl-entry" role="listitem">
+Schapiro, Anna C, Nicholas B Turk-Browne, Matthew M Botvinick, and Kenneth A Norman. 2017. <span>“Complementary Learning Systems Within the Hippocampus: A Neural Network Modelling Approach to Reconciling Episodic Memory with Statistical Learning.”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 372 (1711): 20160049.
+</div>
+<div id="ref-smith2016habit" class="csl-entry" role="listitem">
+Smith, Kyle S, and Ann M Graybiel. 2016. <span>“Habit Formation.”</span> <em>Dialogues in Clinical Neuroscience</em> 18 (1): 33–43.
+</div>
+<div id="ref-sols2017event" class="csl-entry" role="listitem">
+Sols, Ignasi, Sarah DuBrow, Lila Davachi, and Lluı́s Fuentemilla. 2017. <span>“Event Boundaries Trigger Rapid Memory Reinstatement of the Prior Events to Promote Their Representation in Long-Term Memory.”</span> <em>Current Biology</em> 27 (22): 3499–3504.
+</div>
+<div id="ref-starns2014using" class="csl-entry" role="listitem">
+Starns, Jeffrey J. 2014. <span>“Using Response Time Modeling to Distinguish Memory and Decision Processes in Recognition and Source Tasks.”</span> <em>Memory &amp; Cognition</em> 42: 1357–72.
+</div>
+<div id="ref-starns2014validating" class="csl-entry" role="listitem">
+Starns, Jeffrey J, and Roger Ratcliff. 2014. <span>“Validating the Unequal-Variance Assumption in Recognition Memory Using Response Time Distributions Instead of ROC Functions: A Diffusion Model Analysis.”</span> <em>Journal of Memory and Language</em> 70: 36–52.
+</div>
+<div id="ref-swallow2009event" class="csl-entry" role="listitem">
+Swallow, Khena M, Jeffrey M Zacks, and Richard A Abrams. 2009. <span>“Event Boundaries in Perception Affect Memory Encoding and Updating.”</span> <em>Journal of Experimental Psychology: General</em> 138 (2): 236.
+</div>
+<div id="ref-tremblay2010movement" class="csl-entry" role="listitem">
+Tremblay, Pierre-Luc, Marc-Andre Bedard, Dominic Langlois, Pierre J Blanchet, Martin Lemay, and Maxime Parent. 2010. <span>“Movement Chunking During Sequence Learning Is a Dopamine-Dependant Process: A Study Conducted in Parkinson’s Disease.”</span> <em>Experimental Brain Research</em> 205: 375–85.
+</div>
+<div id="ref-unger2022ready" class="csl-entry" role="listitem">
+Unger, Layla, and Vladimir M Sloutsky. 2022. <span>“Ready to Learn: Incidental Exposure Fosters Category Learning.”</span> <em>Psychological Science</em> 33 (6): 999–1019.
+</div>
+<div id="ref-vehtari2017practical" class="csl-entry" role="listitem">
+Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. <span>“Practical Bayesian Model Evaluation Using Leave-One-Out Cross-Validation and WAIC.”</span> <em>Statistics and Computing</em> 27: 1413–32.
+</div>
+<div id="ref-vlach2008spacing" class="csl-entry" role="listitem">
+Vlach, Haley A, Catherine M Sandhofer, and Nate Kornell. 2008. <span>“The Spacing Effect in Children’s Memory and Category Induction.”</span> <em>Cognition</em> 109 (1): 163–67.
+</div>
+<div id="ref-wang2020benefit" class="csl-entry" role="listitem">
+Wang, Jiawei, Zhiya Liu, Qiang Xing, and Carol A Seger. 2020. <span>“The Benefit of Interleaved Presentation in Category Learning Is Independent of Working Memory.”</span> <em>Memory</em> 28 (2): 285–92.
+</div>
+<div id="ref-waskom2021seaborn" class="csl-entry" role="listitem">
+Waskom, Michael L. 2021. <span>“Seaborn: Statistical Data Visualization.”</span> <em>Journal of Open Source Software</em> 6 (60): 3021.
+</div>
+<div id="ref-zacks2020event" class="csl-entry" role="listitem">
+Zacks, Jeffrey M. 2020. <span>“Event Perception and Memory.”</span> <em>Annual Review of Psychology</em> 71 (1): 165–91.
+</div>
+<div id="ref-zacks2007event" class="csl-entry" role="listitem">
+Zacks, Jeffrey M, and Khena M Swallow. 2007. <span>“Event Segmentation.”</span> <em>Current Directions in Psychological Science</em> 16 (2): 80–84.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><span style="color: black">Note that in HSSM, the software used for analyses, the decision boundary parameter is modeled as [-a, a]. Boundary estimates in the conventional setup([0, a]) should be halved to recreate our results.</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Note that while the 95% HDI for drift rate differences in structured condition does include 0, our <em>apriori</em> predictions assume directionality – that is if implicit boundaries are remembered better, we expect this difference to be reliably above 0. Thus, our inference relies on the proportion of posterior samples above 0 as opposed to the 95% HDI.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>See Supplementary Figure S4 for conforming results from a complex model fit including block as a factor on drift rates.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{savalia2026,
+  author = {Savalia, Tejas and J. Starns, Jeffrey and L. Cohen, Andrew},
+  title = {Implicit Boundaries Are Remembered Better Than Non-Boundaries
+    in Statistical Learning},
+  journal = {Memory},
+  volume = {34},
+  number = {9},
+  date = {2026-09-04},
+  url = {https://doi.org},
+  doi = {10.1080/09658211.2026.2719605},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-savalia2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Savalia, Tejas, Jeffrey J. Starns, and Andrew L. Cohen. 2026.
+<span>“Implicit Boundaries Are Remembered Better Than Non-Boundaries in
+Statistical Learning.”</span> <em>Memory</em> 34 (9). <a href="https://doi.org/10.1080/09658211.2026.2719605">https://doi.org/10.1080/09658211.2026.2719605</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
