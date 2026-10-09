@@ -8,6 +8,7 @@ website:
     navbar:
         background: primary
         left:
+            - mds/index.qmd
             - mds/cv.qmd
             - mds/publications.qmd
         tools:
