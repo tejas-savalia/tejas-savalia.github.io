@@ -8,9 +8,12 @@ website:
     navbar:
         background: primary
         left:
-            - mds/index.qmd
-            - mds/cv.qmd
-            - mds/publications.qmd
+            - text: 'Home'
+              href: index.qmd
+            - text: 'CV'
+              href:  cv.qmd
+            - text: 'Publications'
+              href: publications.qmd
         tools:
             - icon: twitter
               href: https://twitter.com/SavaliaTejas
