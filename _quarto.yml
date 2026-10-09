@@ -1,8 +1,9 @@
 project:
     type: website
     output-dir: docs
-
-
+filters:
+  - fontawesome
+  - academicons
 website:
     title: "Tejas Savalia"
     navbar:
@@ -15,13 +16,13 @@ website:
             - text: 'Publications'
               href: publications.qmd
         tools:
-            - icon: twitter
-              href: https://twitter.com/SavaliaTejas
+            - icon: bluesky
+              href: https://bsky.app/profile/tejassavalia.bsky.social
             - icon: linkedin
               href: https://www.linkedin.com/in/tejas-savalia-8201888a/
             - icon: github
               href: https://github.com/tejas-savalia
-            - text: "{{< iconify fa6-brands google-scholar >}}"
+            - icon: mortarboard
               href: https://scholar.google.com/citations?user=25KCLG8AAAAJ&hl=en
 
     google-analytics: " G-4C3HTNZFPQ"
