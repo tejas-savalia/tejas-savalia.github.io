@@ -1,10 +1,11 @@
 ---
 title: "Tejas Savalia"
 smooth-scroll: true
-
+format: html
+engine: knitr
 ---
 
-![](../images/display_pic.png){width=300 fig-align="center"}
+![](/images/display_pic.png){width=300 fig-align="center"}
 
 
 Hello!
@@ -12,11 +13,33 @@ I'm a Postdoc at Albert Einstein College of Medicine. I work in the Division of 
 
 See my [scholar profile](https://scholar.google.com/citations?user=WRdEP-cAAAAJ&hl=en&oi=ao) for a complete list of publications.
 
+```{css, echo=FALSE}
+.scrollable-box {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+```
+
+::: {.scrollable-box}
+
 ## News: 
 - Aug 2026: Started working as a postdoc at the Division of Brain and Cognitive Health Technologies at Albert Einstein College of Medicine. 
+
+- July 2026: New article published in [Cognition](https://www.sciencedirect.com/science/article/pii/S0010027726000533) 
+
+- June 2026: First postdoc article published in [JNeuro](https://pmc.ncbi.nlm.nih.gov/articles/PMC13192393/)
+
+- Dec 2025: New article published in [IEEE Vis](https://ieeexplore.ieee.org/abstract/document/11298846)
+
+- Sep 2024: Started as a postdoc at Emory University 
 
 - Aug 2024: Completed my dissertation at UMass. 
 
 - [Paper accepted at Journal of Affective Disorders](https://doi.org/10.1016/j.jad.2024.07.072) 
 
 - [Paper accepted at JEP:HPP](https://drive.google.com/file/d/1k0dOQ94EU0iz1luldkvcKehhTvaVaqsm/view?usp=sharing) 
+
+:::

@@ -2,16 +2,19 @@
 title: 'CV'
 ---
 # Tejas Savalia, PhD
-### Postdoc at Emory University
+## Academic
 
-My research draws upon cognitive computational modeling to enable
-investigations into cognitive aspects of implicit and explicit
-learning. Broadly, I am interested in constructing neural and
-computationally constrained models to draw quantifiable predictions
-aimed at understanding the psychological processes of decision-making,
-learning, and memory. I use behavioral and fMRI experiments to
-investigate how models of cognition explain how humans learn and act
-upon statistical regularities in their environments.
+### Postdoc at Albert Einstein College of Medicine
+
+My research uses computational models in a hierarchical Bayesian framework applied to cognitive high frequency assessments to gain deeper insights into psychopathology. 
+
+### Postdoc at Emory University
+I used predictive modeling of functional Neuroimaging data to identify the neural underpinnings of subjective positive affect across adolescence and early adulthood. I also contributed analytical expertise to behavioral experiments on learning, decision making and memory.
+
+### Graduate student at UMass Amherst
+I used behavioral and fMRI experiments to investigate how models of cognition explain how humans learn and act
+upon statistical regularities in their environments. My research used centered around cognitive computational modeling to enable investigations into cognitive aspects of implicit and explicit
+learning.
 
 ## Experience
 ### Industry Research Experience
@@ -44,16 +47,12 @@ upon statistical regularities in their environments.
 
 
 ## Current Projects
+
+-   **Developing analytic frameworks for cognitive HFA**.
+    Bayesian hierarchical modeling of behavioral data collected via Ecological Momentary Assessments to drive insights into momentary cognition, individual phenotypes and psychopathology. 
+
 -   **Disassociating neural mechanisms of affective stimuli**.
     Analysis of neuroimaging data to assess common and distinctive neural representations of positive affective experiences in adults and adolescents. 
-
--   **Discerning the role of emotional states in statistical learning across development**.
-    Behavioral and Functional Neuroimaging experiments and computational modeling to investigate how internal affective states help or hurt implicit statistical learning in adults and adolescents. 
-
--   **Understanding neural motor directional tuning using fMRI**
-    Functional Neuroimaging experiments and computational modeling with
-    multivariate analyses of neural tuning functions to investigate the
-    neural correlates of motor directional planning.
 
 ## Publications
 ### Accepted and Published Articles
